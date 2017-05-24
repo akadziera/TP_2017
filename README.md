@@ -13,3 +13,8 @@
 
 ## Uwaga 
 * Nie umieszczamy w repozyterium plikow binarnych! 
+
+## Linki
+
+* Kurs dotyczący GIT - https://www.atlassian.com/git/tutorials 
+

@@ -6,6 +6,10 @@
 * Każdy projekt powinien zostać umieszczony w osobnym folderze nazwaFolderu_ID (ID zostanie przydzielone do kazdej grupy projektowej)
 * Po zakończeniu projektu robimy Pull Request do brancha develop
 
+## Co folder projektowy musi posiadać
+
+* Źródła programu (C, C++)
+* Dokumentację (README.md) - kilka zdań na temat samego projektu + opis jak zbudować kod
 
 ## Uwaga 
 * Nie umieszczamy w repozyterium plikow binarnych! 

@@ -1,0 +1,3 @@
+﻿  MyForm.cpp
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+LINK : fatal error LNK1561: punkt wejťcia musi byŠ zdefiniowany

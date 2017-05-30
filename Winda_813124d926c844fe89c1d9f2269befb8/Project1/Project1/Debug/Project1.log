@@ -1,2 +1,4 @@
 ﻿  MyForm.cpp
-  Project1.vcxproj -> C:\Users\Mikołaj\Desktop\Project1\TP_2017\Winda_813124d926c844fe89c1d9f2269befb8\Project1\Debug\Project1.exe
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(21): error C3145: 'dinosaurs': global or static variable may not have managed type 'System::Collections::Generic::List<System::String ^> ^'
+  c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(21): note: may not declare a global or static variable, or a member of a native type that refers to objects in the gc heap
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(231): fatal error C1075: the left parenthesis '(' was unmatched at the end of the file

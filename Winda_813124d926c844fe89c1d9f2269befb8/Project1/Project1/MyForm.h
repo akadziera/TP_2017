@@ -1,21 +1,31 @@
 #pragma once
+#include<string>
+#include<vector>
+#include<iostream>
 
 namespace Project1 {
-
+	
+	
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Collections::Generic;
 
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
+	
+//	List<String^>^ dinosaurs = gcnew List<String^>();
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		static
 			int czas = 0;
+	
+			 int pietro = 0;
+			 
 	public:
 		MyForm(void)
 		{
@@ -36,6 +46,7 @@ namespace Project1 {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	protected:
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
@@ -69,11 +80,12 @@ namespace Project1 {
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->Gora = (gcnew System::Windows::Forms::Button());
-			this->ludzik = (gcnew System::Windows::Forms::PictureBox());
+							this->ludzik = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ludzik))->BeginInit();
@@ -96,7 +108,6 @@ namespace Project1 {
 			this->pictureBox2->Size = System::Drawing::Size(328, 90);
 			this->pictureBox2->TabIndex = 1;
 			this->pictureBox2->TabStop = false;
-			this->pictureBox2->Click += gcnew System::EventHandler(this, &MyForm::pictureBox2_Click);
 			// 
 			// timer1
 			// 
@@ -115,11 +126,7 @@ namespace Project1 {
 			// 
 			// ludzik
 			// 
-			this->ludzik->Location = System::Drawing::Point(0, 0);
-			this->ludzik->Name = L"ludzik";
-			this->ludzik->Size = System::Drawing::Size(100, 50);
-			this->ludzik->TabIndex = 0;
-			this->ludzik->TabStop = false;
+		
 			// 
 			// button1
 			// 
@@ -151,11 +158,19 @@ namespace Project1 {
 			this->timer3->Interval = 1;
 			this->timer3->Tick += gcnew System::EventHandler(this, &MyForm::timer3_Tick);
 			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(813, 537);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(29, 20);
+			this->textBox1->TabIndex = 6;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1346, 652);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->Gora);
@@ -167,21 +182,24 @@ namespace Project1 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ludzik))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
-	}
 	private: System::Void Gora_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->timer1->Start();
 		
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		this->pictureBox2->Top += -1;
+		this->textBox1->Top += -1;
 		czas++;
+		
 		if (czas == 115) {
 			this->timer1->Stop();
 			czas = 0;
+			pietro++;
+			this->textBox1->Text = Convert::ToString(pietro);
 		}
 		}
 	
@@ -190,11 +208,14 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e) {
 	this->pictureBox2->Top += 1;
-	if(ludzik->Location==	this->ludzik->Top += 1;
+	this->textBox1->Top += 1;
+	//if(ludzik->Location==	this->ludzik->Top += 1;
 	czas++;
 	if (czas == 115) {
 		this->timer2->Stop();
 		czas = 0;
+		pietro--;
+		this->textBox1->Text = Convert::ToString(pietro);
 	}
 	
 }
@@ -207,7 +228,9 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	ludzik->TabIndex = 10;
 	ludzik->Name = L"ludzik";
 	ludzik->Load("GingerbreadMan1.jpg");
-
+	//ludzik0.push_back(pictureBox1();
+	
+	if(pietro==0)	this->timer3->Start();
 	ludzik->Click += gcnew System::EventHandler(this, &MyForm::ludzik_Click);
 }
 		 

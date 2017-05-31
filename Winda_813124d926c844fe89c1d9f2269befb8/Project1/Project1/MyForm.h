@@ -4,8 +4,8 @@
 #include<iostream>
 
 namespace Project1 {
-	
-	
+
+
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -17,19 +17,21 @@ namespace Project1 {
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
-	
-//	List<String^>^ dinosaurs = gcnew List<String^>();
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		static
 			int czas = 0;
-	
+		bool przesuniecie=false;
 			 int pietro = 0;
+			 int czlek=0;
+			 System::ComponentModel::Container ^components;
+			 array<PictureBox^> ^tab;
 			 
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
+			tab = gcnew array<PictureBox^>(100);
 			//
 			//TODO: Add the constructor code here
 			//
@@ -59,8 +61,6 @@ namespace Project1 {
 	private: System::Windows::Forms::Timer^  timer3;
 
 
-	private: System::ComponentModel::IContainer^  components;
-
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -80,7 +80,7 @@ namespace Project1 {
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->Gora = (gcnew System::Windows::Forms::Button());
-							this->ludzik = (gcnew System::Windows::Forms::PictureBox());
+			this->ludzik = (gcnew System::Windows::Forms::PictureBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->button2 = (gcnew System::Windows::Forms::Button());
@@ -111,7 +111,7 @@ namespace Project1 {
 			// 
 			// timer1
 			// 
-			this->timer1->Interval = 15;
+			this->timer1->Interval = 3;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
 			// Gora
@@ -126,7 +126,11 @@ namespace Project1 {
 			// 
 			// ludzik
 			// 
-		
+			this->ludzik->Location = System::Drawing::Point(0, 0);
+			this->ludzik->Name = L"ludzik";
+			this->ludzik->Size = System::Drawing::Size(100, 50);
+			this->ludzik->TabIndex = 0;
+			this->ludzik->TabStop = false;
 			// 
 			// button1
 			// 
@@ -140,7 +144,7 @@ namespace Project1 {
 			// 
 			// timer2
 			// 
-			this->timer2->Interval = 15;
+			this->timer2->Interval = 3;
 			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::timer2_Tick);
 			// 
 			// button2
@@ -191,11 +195,11 @@ namespace Project1 {
 		
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-		this->pictureBox2->Top += -1;
-		this->textBox1->Top += -1;
+		this->pictureBox2->Top += -3;
+		this->textBox1->Top += -3;
 		czas++;
-		
-		if (czas == 115) {
+		//if (przesuniecie = true)	this->ludzik->Top += -3;
+		if (czas == 38) {
 			this->timer1->Stop();
 			czas = 0;
 			pietro++;
@@ -205,13 +209,18 @@ namespace Project1 {
 	
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->timer2->Start();
+	//tab[2]->Parent = this;
+	tab[2]->Location = System::Drawing::Point(102, 540);
+	tab[2]->Size = System::Drawing::Size(51, 74);
+	tab[2]->BringToFront();
+	tab[2]->Load("GingerbreadMan1.jpg");
 }
 private: System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e) {
-	this->pictureBox2->Top += 1;
-	this->textBox1->Top += 1;
-	//if(ludzik->Location==	this->ludzik->Top += 1;
+	this->pictureBox2->Top += 3;
+	this->textBox1->Top += 3;
+	//if(przesuniecie=true)	this->ludzik->Top += 3;
 	czas++;
-	if (czas == 115) {
+	if (czas == 38) {
 		this->timer2->Stop();
 		czas = 0;
 		pietro--;
@@ -225,18 +234,19 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	ludzik->Location = System::Drawing::Point(102, 540);
 	ludzik->Size = System::Drawing::Size(51 ,74);
 	ludzik->BringToFront();
-	ludzik->TabIndex = 10;
+ludzik->TabIndex = 10;
 	ludzik->Name = L"ludzik";
 	ludzik->Load("GingerbreadMan1.jpg");
-	//ludzik0.push_back(pictureBox1();
+	tab[1] = ludzik;
+	tab[2] = tab[1];
 	
-	if(pietro==0)	this->timer3->Start();
-	ludzik->Click += gcnew System::EventHandler(this, &MyForm::ludzik_Click);
+	if (pietro == 0) {
+		this->timer3->Start();
+		przesuniecie = true;
+
+	}
 }
 		 
-	private: System::Void ludzik_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->timer3->Start();
-	}
 		 
 private: System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e) {
 	this->ludzik->Left += 5;

@@ -1,3 +1,4 @@
 ﻿  MyForm.cpp
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\myform.h(221): warning C4172: returning address of local variable or temporary: Ludz
 .NETFramework,Version=v4.5.AssemblyAttributes.obj : warning LNK4099: PDB 'vc141.pdb' was not found with '.NETFramework,Version=v4.5.AssemblyAttributes.obj' or at 'C:\Users\Miko│aj\Desktop\Project1\TP_2017\Winda_813124d926c844fe89c1d9f2269befb8\Project1\Debug\vc141.pdb'; linking object as if no debug info
   Project1.vcxproj -> C:\Users\Mikołaj\Desktop\Project1\TP_2017\Winda_813124d926c844fe89c1d9f2269befb8\Project1\Debug\Project1.exe

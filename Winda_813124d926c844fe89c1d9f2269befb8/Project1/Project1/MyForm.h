@@ -13,6 +13,22 @@ namespace Project1 {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	using namespace System::Collections::Generic;
+	using namespace std;
+
+	PictureBox^ *Buff;
+
+
+	struct ciastki
+	{
+		bool Wsiald = 0;
+		bool Wysiadl = 0;
+		int Start;
+		int Koniec;
+		PictureBox^ *Picturewskaz;
+	};
+
+	static vector<ciastki> Ciastkozbior;
+
 
 	/// <summary>
 	/// Summary for MyForm
@@ -25,13 +41,13 @@ namespace Project1 {
 			 int pietro = 0;
 			 int czlek=0;
 			 System::ComponentModel::Container ^components;
-			 array<PictureBox^> ^tab;
+			 //array<PictureBox^> ^tab;
 			 
 	public:
 		MyForm(void)
 		{
 			InitializeComponent();
-			tab = gcnew array<PictureBox^>(100);
+		//	tab = gcnew array<PictureBox^>(100);
 			//
 			//TODO: Add the constructor code here
 			//
@@ -189,6 +205,22 @@ namespace Project1 {
 			this->PerformLayout();
 
 		}
+
+
+		public: PictureBox^ *Kreator(int X, int Y, PictureBox^ * &Buff)
+		{
+			PictureBox^ Ludz = gcnew PictureBox();
+			Ludz->Location = Point(X, Y);
+			Ludz->Size = System::Drawing::Size(51, 74);
+			Ludz->Load("GingerbreadMan1.jpg");
+			Ludz->BackColor = System::Drawing::Color::Transparent;
+			this->Controls->Add(Ludz);
+			Ludz->BringToFront();
+			PictureBox^ *Wsk = &Ludz;
+			Buff = &Ludz;
+			return Wsk;
+		}
+				
 #pragma endregion
 	private: System::Void Gora_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->timer1->Start();
@@ -209,11 +241,12 @@ namespace Project1 {
 	
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	this->timer2->Start();
+	
 	//tab[2]->Parent = this;
-	tab[2]->Location = System::Drawing::Point(102, 540);
-	tab[2]->Size = System::Drawing::Size(51, 74);
-	tab[2]->BringToFront();
-	tab[2]->Load("GingerbreadMan1.jpg");
+	//tab[2]->Location = System::Drawing::Point(102, 540);
+	//tab[2]->Size = System::Drawing::Size(51, 74);
+	//tab[2]->BringToFront();
+	//tab[2]->Load("GingerbreadMan1.jpg");
 }
 private: System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e) {
 	this->pictureBox2->Top += 3;
@@ -230,11 +263,11 @@ private: System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	ludzik->Parent = this;
+	/*ludzik->Parent = this;
 	ludzik->Location = System::Drawing::Point(102, 540);
 	ludzik->Size = System::Drawing::Size(51 ,74);
 	ludzik->BringToFront();
-ludzik->TabIndex = 10;
+	ludzik->TabIndex = 10;
 	ludzik->Name = L"ludzik";
 	ludzik->Load("GingerbreadMan1.jpg");
 	tab[1] = ludzik;
@@ -245,13 +278,20 @@ ludzik->TabIndex = 10;
 		przesuniecie = true;
 
 	}
+	*/
+	ciastki Ludz;
+	//Ludz.Picturewskaz=Kreator(102, 540, Buff);
+	Ciastkozbior.push_back(Ludz);
+	this->timer3->Start();
 }
 		 
 		 
 private: System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e) {
-	this->ludzik->Left += 5;
+	Ciastkozbior[0].Picturewskaz = Kreator(110+czas+czas+czas, 540, Buff);
 	czas++;
-	if (czas == 100) {
+	
+	if (czas == 150) {
+		delete(&Ciastkozbior[0].Picturewskaz);
 		this->timer3->Stop();
 		czas = 0;
 	}

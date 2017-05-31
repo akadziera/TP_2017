@@ -384,31 +384,6 @@
         TkSuQmCC
 </value>
   </data>
-  <data name="Ludz.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAADQAAABaCAYAAAD3hnXBAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAARJSURBVHhe7Zw7
-        SyRBFIUHFcUHPsBAEBQEE000MjHSQBMDH4EohoK5iZG5ubmbCWJiIKiJgoKK4F/q5UxT9p07x3p01cxu
-        UAsfLF2nT52PWRlYlm28vLwUneLs7KxYXFwshoaGmuD3eMayqeiI0OHhYdFoNKwcHBzQd2NJLjQ7O0sF
-        GDMzM7QjhqRCOzs7dLgNvMO66pJUiA32gXXVJZnQ7u4uHesD3mWddUgmxIaGwDrrkIV+g40MgXXWIQv9
-        xvr6Oh3qA95lnXVIJvT6+krH+oB3WWcdkgmBhYUFOtgG3mFddUkqBNhoG6wjhuRCYG5ujo6XIMPejaUj
-        QuD+/r5YWlpqE8EznLF3UtAxoX9FFvrfCRJaWVkpRkZGugruZFt+w0vo8fGx7Ye72zw9PdFtGi8hdkEI
-        +NVo/Gl7HgrbpumCEET+JJFi2zROoa+vL1ruRymTSgpb2EaJUwhfgqzcj1YhUEqxrBufL2Sn0NXVFS33
-        pRSQUjznA7awjRKn0MXFBS33R/5RixPCFrZR4hQ6PT2l5f6UIpUUy/iBLWyjxCl0dHREy/0xn0zczw/A
-        FrZR4hTa2Nig5f5UQiUs4we2sI0Sp9Dy8jIt96X8VNIIYQvbKHEKTU9P03I/SolUUtjCNkqcQn19fbTc
-        j0qiVYpl3WAL2yhxCrFiw+joKH1eUQmBSopl/WAbJVFCrvNKQEvxPBgbG6PPDXqfpqNClUCrFM+W+Nxp
-        o+NCoF2KZUt87rTRFSHQKsWyJT532uiwENBSLFPhc6cNq9DNzQ0tNSDDnktKiUqKZSSuTmySGzVWocvL
-        S1pqQIY911RS/Fzi6sQmuVFjFTo/P6eloKenp5lhZzGg0/Zljk1yo8YqdHJyQkvB5ORkM8POYkAnutkZ
-        wCa5UWMV2t7epqUA/8zl9vaWnsWAe9HNzgA26Z0Sq9Dq6iotBSbDzmJw9WKTyTCsQvPz87QUmAw7i8HV
-        i00mw7AKjY+P01JgMuwsBlcvNpkMwyrECg0+mTqE3M3IQgafTB1C7mbUFnp7e3Nm6uBzt8kw8idk8MnU
-        waf38/PzJ6f5Vej7+5uWGUyOncXg04ttJqep9QlNTEw4M3UxvbiDnQOTYViFnp+fnYXsPAZXNzbJjMYq
-        ZNjf32/+reXx8XHbGbtUMjw8/JOdmpqiGYnsBrgTd2ODPmN4CdlgoySx+VCykIaNksTmQ8lCGjZKEpsP
-        JQtp2ChJbD6ULKRhoySx+VCykIaNksTmQ8lCGjZKEpsPJQtp2ChJbD6ULKRhoySx+VCykIaNksTmQ8lC
-        GjZKEpsPJQtp2ChJbD6ULKRhoySx+VCykIaNksTmQ8lCGjZKEpsPpatCd3d3NCN5eHhoeSeUaKHe3l46
-        zKDzLCPR+VCihQAbBq6vr9uyHx8fNAve39/b8qEkEQJ7e3vN/4yov7+/WFtboxnJ5uZmMTAwUAwODhZb
-        W1s0E85L8RcfhjjW/7FR0AAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="Z_Winda.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 3</value>
   </metadata>

@@ -31,7 +31,7 @@ namespace Projekt2 {
 
 	protected:
 		/// <summary>
-		/// Wyczyœæ wszystkie u¿ywane zasoby.
+		/// WyczyÅ›Ä‡ wszystkie uÅ¼ywane zasoby.
 		/// </summary>
 		~MyForm()
 		{
@@ -119,8 +119,8 @@ namespace Projekt2 {
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Wymagana metoda obs³ugi projektanta — nie nale¿y modyfikowaæ 
-		/// zawartoœæ tej metody z edytorem kodu.
+		/// Wymagana metoda obsÅ‚ugi projektanta â€” nie naleÅ¼y modyfikowaÄ‡ 
+		/// zawartoÅ›Ä‡ tej metody z edytorem kodu.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -235,7 +235,11 @@ namespace Projekt2 {
 			this->ResumeLayout(false);
 
 		}
+<<<<<<< HEAD
 		//nananana próba
+=======
+
+>>>>>>> 4afde63fe78e019ce4ad99702480cc0e1ae39286
 		//Elevator controll
 
 void Elevator(int y)

@@ -235,7 +235,7 @@ namespace Projekt2 {
 			this->ResumeLayout(false);
 
 		}
-
+		//nananana próba
 		//Elevator controll
 
 void Elevator(int y)

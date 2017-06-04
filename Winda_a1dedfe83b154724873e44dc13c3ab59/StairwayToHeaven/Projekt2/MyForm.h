@@ -7,6 +7,7 @@
 namespace Projekt2 {
 
 	int timer = 0;
+	int x = 0;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -237,19 +238,21 @@ namespace Projekt2 {
 
 		//Elevator controll
 
-void Elevator(int x)
+void Elevator(int y)
 {
 
 	this->timer1->Start();
-	if (this->pictureBox2->Top != x)
+	if (this->pictureBox2->Top < y)
 		this->pictureBox2->Top += 1;
-
-
-	if (timer == 720)
-	{
-		timer = 0;
+	else if (this->pictureBox2->Top > y)
+		this->pictureBox2->Top -= 1;
+	else
 		this->timer1->Stop();
-	}
+
+	
+
+
+	
 }
 
 
@@ -261,24 +264,29 @@ private: System::Void pictureBox1_Click(System::Object^  sender, System::EventAr
 private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
+	timer++;
+	Elevator(x);
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	
-	Elevator(FIRST_FLOOR);
-	
+	x = FIRST_FLOOR;
+	Elevator(x);
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	Elevator(SECOND_FLOOR);
+	x = SECOND_FLOOR;
+	Elevator(x);
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	Elevator(THIRD_FLOOR);
+	x = THIRD_FLOOR;
+	Elevator(x);
 }
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-	Elevator(FOURTH_FLOOR);
+	x = FOURTH_FLOOR;
+	Elevator(x);
 }
 private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
-	Elevator(FIFTH_FLOOR);
+	x = FIFTH_FLOOR;
+	Elevator(x);
 }
 };
 

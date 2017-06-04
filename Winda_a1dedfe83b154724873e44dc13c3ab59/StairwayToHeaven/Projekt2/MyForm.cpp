@@ -1,6 +1,5 @@
 #include "MyForm.h"
-
-
+#include "Resource.h"
 
 using namespace System;
 using namespace System::Windows::Forms;

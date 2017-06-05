@@ -235,11 +235,9 @@ namespace Projekt2 {
 			this->ResumeLayout(false);
 
 		}
-<<<<<<< HEAD
-		//nananana próba
-=======
 
->>>>>>> 4afde63fe78e019ce4ad99702480cc0e1ae39286
+
+
 		//Elevator controll
 
 void Elevator(int y)

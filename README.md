@@ -4,8 +4,7 @@
 
 Projekt zrobiony przy użyciu Microsoft Visual Studio 2015 -> Windows forms C++
 
-Przerobione grafiki dźwigów i haków: Marek Mikulski
-
+Przerobione grafiki dźwigów i haków: Marek Mikulski 
 źródło: https://www.iconfinder.com/data/icons/construction-icon-set/756/Flat_Design_Single_05_2016_construction_05-512.png
 
 

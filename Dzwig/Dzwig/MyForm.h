@@ -350,7 +350,7 @@ namespace Dzwig {
 			// 
 			this->left->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->left->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"left.Image")));
-			this->left->Location = System::Drawing::Point(1051, 139);
+			this->left->Location = System::Drawing::Point(874, 88);
 			this->left->Name = L"left";
 			this->left->Size = System::Drawing::Size(58, 58);
 			this->left->TabIndex = 19;
@@ -362,7 +362,7 @@ namespace Dzwig {
 			// 
 			this->right->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->right->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"right.Image")));
-			this->right->Location = System::Drawing::Point(1179, 139);
+			this->right->Location = System::Drawing::Point(1002, 88);
 			this->right->Name = L"right";
 			this->right->Size = System::Drawing::Size(58, 58);
 			this->right->TabIndex = 20;
@@ -374,7 +374,7 @@ namespace Dzwig {
 			// 
 			this->up->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->up->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"up.Image")));
-			this->up->Location = System::Drawing::Point(1115, 107);
+			this->up->Location = System::Drawing::Point(938, 56);
 			this->up->Name = L"up";
 			this->up->Size = System::Drawing::Size(58, 58);
 			this->up->TabIndex = 21;
@@ -386,7 +386,7 @@ namespace Dzwig {
 			// 
 			this->down->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->down->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"down.Image")));
-			this->down->Location = System::Drawing::Point(1115, 171);
+			this->down->Location = System::Drawing::Point(938, 120);
 			this->down->Name = L"down";
 			this->down->Size = System::Drawing::Size(58, 58);
 			this->down->TabIndex = 22;
@@ -416,7 +416,7 @@ namespace Dzwig {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1279, 470);
+			this->ClientSize = System::Drawing::Size(1084, 470);
 			this->Controls->Add(this->box);
 			this->Controls->Add(this->obraz3);
 			this->Controls->Add(this->down);

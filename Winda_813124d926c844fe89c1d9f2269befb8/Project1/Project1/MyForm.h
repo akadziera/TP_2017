@@ -28,7 +28,7 @@ namespace Project1 {
 	};
 
 	static vector<ciastki> Ciastkozbior;
-
+	static vector<int> Kolejka;
 
 	/// <summary>
 	/// Summary for MyForm
@@ -40,7 +40,23 @@ namespace Project1 {
 		bool przesuniecie=false;
 			 int pietro = 0;
 			 int czlek=0;
-			 System::ComponentModel::Container ^components;
+			 int gdzie_jedziemy = 0;
+			 int waga = 0;
+	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox1;
+	private: System::Windows::Forms::Button^  button3;
+	private: System::Windows::Forms::Timer^  Parter;
+	private: System::Windows::Forms::TextBox^  Masa;
+
+
+
+
+
+
+
+
+
+	private: System::ComponentModel::IContainer^  components;
+
 			 //array<PictureBox^> ^tab;
 			 
 	public:
@@ -102,6 +118,10 @@ namespace Project1 {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->maskedTextBox1 = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->Parter = (gcnew System::Windows::Forms::Timer(this->components));
+			this->Masa = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ludzik))->BeginInit();
@@ -185,11 +205,43 @@ namespace Project1 {
 			this->textBox1->Size = System::Drawing::Size(29, 20);
 			this->textBox1->TabIndex = 6;
 			// 
+			// maskedTextBox1
+			// 
+			this->maskedTextBox1->Location = System::Drawing::Point(929, 107);
+			this->maskedTextBox1->Name = L"maskedTextBox1";
+			this->maskedTextBox1->Size = System::Drawing::Size(100, 20);
+			this->maskedTextBox1->TabIndex = 7;
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(929, 133);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(75, 23);
+			this->button3->TabIndex = 8;
+			this->button3->Text = L"button3";
+			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			// 
+			// Parter
+			// 
+			this->Parter->Interval = 5000;
+			this->Parter->Tick += gcnew System::EventHandler(this, &MyForm::Parter_Tick_1);
+			// 
+			// Masa
+			// 
+			this->Masa->Location = System::Drawing::Point(1130, 12);
+			this->Masa->Name = L"Masa";
+			this->Masa->Size = System::Drawing::Size(133, 20);
+			this->Masa->TabIndex = 9;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1346, 652);
+			this->Controls->Add(this->Masa);
+			this->Controls->Add(this->button3);
+			this->Controls->Add(this->maskedTextBox1);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -206,7 +258,6 @@ namespace Project1 {
 
 		}
 
-
 		public: PictureBox^ *Kreator(int X, int Y, PictureBox^ * &Buff)
 		{
 			PictureBox^ Ludz = gcnew PictureBox();
@@ -220,6 +271,18 @@ namespace Project1 {
 			Buff = &Ludz;
 			return Wsk;
 		}
+
+public:void Jazda(int gdzie_jedziemy)
+{
+	this->Parter->Stop();
+	if (pietro > gdzie_jedziemy) {
+		this->timer2->Start();
+	}
+	if (pietro < gdzie_jedziemy) {
+		this->timer1->Start();		
+	}
+	this->Parter->Start();
+}
 				
 #pragma endregion
 	private: System::Void Gora_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -236,6 +299,7 @@ namespace Project1 {
 			czas = 0;
 			pietro++;
 			this->textBox1->Text = Convert::ToString(pietro);
+			Jazda(gdzie_jedziemy);
 		}
 		}
 	
@@ -258,6 +322,7 @@ private: System::Void timer2_Tick(System::Object^  sender, System::EventArgs^  e
 		czas = 0;
 		pietro--;
 		this->textBox1->Text = Convert::ToString(pietro);
+		Jazda(gdzie_jedziemy);
 	}
 	
 }
@@ -283,6 +348,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	//Ludz.Picturewskaz=Kreator(102, 540, Buff);
 	Ciastkozbior.push_back(Ludz);
 	this->timer3->Start();
+
 }
 		 
 		 
@@ -291,10 +357,27 @@ private: System::Void timer3_Tick(System::Object^  sender, System::EventArgs^  e
 	czas++;
 	
 	if (czas == 150) {
-		delete(&Ciastkozbior[0].Picturewskaz);
+	//	delete(&Ciastkozbior[0].Picturewskaz);
 		this->timer3->Stop();
 		czas = 0;
+		waga = waga + 70;
+		this->Masa->Text = Convert::ToString(waga);
 	}
+}
+
+
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+	Kolejka.push_back(Convert::ToInt32(maskedTextBox1->Text));
+	Jazda(Kolejka[0]);
+
+}
+
+private: System::Void Parter_Tick_1(System::Object^  sender, System::EventArgs^  e) {
+	if (czas == 1) {
+		gdzie_jedziemy = 0;
+		Jazda(gdzie_jedziemy);
+	}
+
 }
 };
 }

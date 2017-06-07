@@ -19,3 +19,4 @@ Class Project1.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     Kreator(Int32, Int32, PictureBox** IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    Jazda(Int32): PrivateScope, Public, HideBySig

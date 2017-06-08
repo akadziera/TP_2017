@@ -9,6 +9,8 @@ namespace Dzwig {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+	int licznik = 0;
+
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
@@ -62,6 +64,13 @@ namespace Dzwig {
 	private: System::Windows::Forms::Button^  down;
 	private: System::Windows::Forms::PictureBox^  obraz3;
 	private: System::Windows::Forms::PictureBox^  box;
+	private: System::Windows::Forms::Label^  label3;
+	private: System::Windows::Forms::Label^  label4;
+	private: System::Windows::Forms::Button^  button9;
+	private: System::Windows::Forms::Button^  button10;
+
+
+
 	protected:
 
 
@@ -110,6 +119,10 @@ namespace Dzwig {
 			this->down = (gcnew System::Windows::Forms::Button());
 			this->obraz3 = (gcnew System::Windows::Forms::PictureBox());
 			this->box = (gcnew System::Windows::Forms::PictureBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->button9 = (gcnew System::Windows::Forms::Button());
+			this->button10 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dzwig))->BeginInit();
@@ -412,11 +425,51 @@ namespace Dzwig {
 			this->box->TabIndex = 24;
 			this->box->TabStop = false;
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(1127, 57);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(25, 13);
+			this->label3->TabIndex = 25;
+			this->label3->Text = L"340";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(1102, 23);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(58, 13);
+			this->label4->TabIndex = 26;
+			this->label4->Text = L"max. waga";
+			// 
+			// button9
+			// 
+			this->button9->Location = System::Drawing::Point(1183, 36);
+			this->button9->Name = L"button9";
+			this->button9->Size = System::Drawing::Size(34, 26);
+			this->button9->TabIndex = 27;
+			this->button9->Text = L"button9";
+			this->button9->UseVisualStyleBackColor = true;
+			// 
+			// button10
+			// 
+			this->button10->Location = System::Drawing::Point(1183, 65);
+			this->button10->Name = L"button10";
+			this->button10->Size = System::Drawing::Size(34, 26);
+			this->button10->TabIndex = 28;
+			this->button10->Text = L"button10";
+			this->button10->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1084, 470);
+			this->ClientSize = System::Drawing::Size(1311, 470);
+			this->Controls->Add(this->button10);
+			this->Controls->Add(this->button9);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->box);
 			this->Controls->Add(this->obraz3);
 			this->Controls->Add(this->down);
@@ -520,6 +573,7 @@ private: System::Void menu_Click(System::Object^  sender, System::EventArgs^  e)
 	down->Visible = false;
 	left->Visible = false;
 	right->Visible = false;
+	box->Visible = false;
 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -559,6 +613,7 @@ private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e)
 	down->Visible = true;
 	left->Visible = true;
 	right->Visible = true;
+	box->Visible = true;
 
 	obraz1->Visible = false;
 	obraz2->Visible = false;
@@ -568,26 +623,83 @@ private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e)
 	credits->Visible = false;
 	DostosujDzwig->Visible = false;
 
+
+
 }
 private: System::Void right_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (hak->Location.X < 550)
 	hak->Location = System::Drawing::Point(hak->Location.X + 20, hak->Location.Y);
+
+	if (box->Location.Y >= hak->Location.Y  && box->Location.Y <= hak->Location.Y + 83 && (hak->Location.X >= box->Location.X && hak->Location.X <= box->Location.X + 50))
+	{
+
+		box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 53);
+		licznik++;
+
+		do {
+			box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 53);
+
+
+		} while (box->Location.Y <= 350 && licznik == 1);
+	}
 }
 private: System::Void down_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (hak->Location.Y < 350)
-	hak->Location = System::Drawing::Point(hak->Location.X, hak->Location.Y + 30);
+	hak->Location = System::Drawing::Point(hak->Location.X, hak->Location.Y + 20);
 
-	if(hak->Location.Y >= 341 && (hak->Location.X >= box->Location.X && hak->Location.X <= box->Location.X +60 ))
-		MessageBox::Show("teraz ma byæ przycisk chwyæ/zwolnij", "Jest na dole", MessageBoxButtons::OK);
+	if (/*hak->Location.Y >= 341 && (*/box->Location.Y >= hak->Location.Y && box->Location.Y <= hak->Location.Y + 83 && hak->Location.X >= box->Location.X && hak->Location.X <= box->Location.X + 50)
+	{
+		
+		box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 53);
+		licznik++;
+
+		do {
+			box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 40);
+
+
+		} while (box->Location.Y <= 350 && licznik == 1);
+	}
+
+		//MessageBox::Show("teraz ma byæ przycisk chwyæ/zwolnij", "Jest na dole", MessageBoxButtons::OK);
 
 }
 private: System::Void up_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (hak->Location.Y > 88)
-	hak->Location = System::Drawing::Point(hak->Location.X, hak->Location.Y - 30);
+	
+																													//PORUSZANIE BOXA W GÓRÊ
+	if (box->Location.Y >= hak->Location.Y + 60 && box->Location.Y <= hak->Location.Y +83 && hak->Location.X >= box->Location.X && hak->Location.X <= box->Location.X + 50)
+	{
+
+		box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 53);
+		licznik++;
+
+		do {
+			box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 40);
+
+
+		} while (box->Location.Y <= 350 && licznik == 1);
+	}
+
+	if (hak->Location.Y > 88)															 //RUSZANIE W GÓRÊ
+		hak->Location = System::Drawing::Point(hak->Location.X, hak->Location.Y - 20);
 }
 private: System::Void left_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (hak->Location.X > 295)
 	hak->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y);
+
+	if (box->Location.Y >= hak->Location.Y  && box->Location.Y <= hak->Location.Y + 83 && (hak->Location.X >= box->Location.X && hak->Location.X <= box->Location.X + 50))
+	{
+
+		box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 53);
+		licznik++;
+
+		do {
+			box->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y + 53);
+
+
+		} while (box->Location.Y <= 350 && licznik == 1);
+	}
+}
+private: System::Void zwolnij_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

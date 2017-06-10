@@ -2,8 +2,8 @@
 
 ## Projekt 4 - Symulacja dźwigu
 
-Możliwość dostasowania kolorów dźwigu według upodobań użytkownika
-Uzytkownik ma pełną kontrolę nad dźwigiem, może podnosić skrzynię i odkładać ją w dowolnie wybranym przez siebie miejscu
+Możliwość dostasowania kolorów dźwigu według upodobań użytkownika.
+Uzytkownik ma pełną kontrolę nad dźwigiem, może podnosić skrzynię i odkładać ją w dowolnie wybranym przez siebie miejscu.
 Projekt zrobiony przy użyciu Microsoft Visual Studio 2015 -> Windows forms C++
 
 Przerobione grafiki dźwigów i haków: Marek Mikulski   

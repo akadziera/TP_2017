@@ -2,8 +2,6 @@
 
 #include "Resource.h"
 
-//#define ID_HOME    42
-
 namespace Projekt2 {
 	//Globals
 	std::vector <int> floor;
@@ -21,6 +19,18 @@ namespace Projekt2 {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+
+		String^ lvl1 = "1";
+		String^ lvl2 = "2";
+		String^ lvl3 = "3";
+		String^ lvl4 = "4";
+		String^ lvl5 = "5";
+		String^ queue1;
+		String^ queue2;
+		String^ queue3;
+		String^ queue4;
+		String^ queue5;
+
 	public:
 		MyForm(void)
 		{
@@ -43,32 +53,6 @@ namespace Projekt2 {
 		}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	private: System::Windows::Forms::Timer^  timer1;
@@ -77,34 +61,11 @@ namespace Projekt2 {
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
 	private: System::Windows::Forms::Button^  button5;
+	private: System::Windows::Forms::Label^  level1;
 	private: System::ComponentModel::IContainer^  components;
 
 
 	protected:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	protected:
 
@@ -134,6 +95,7 @@ namespace Projekt2 {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->level1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -212,6 +174,16 @@ namespace Projekt2 {
 			this->button5->Text = L"5";
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
+			//
+			// level1
+			//
+			this->level1->AutoSize = true;
+			this->level1->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->level1->Location = System::Drawing::Point(154, 430);
+			this->level1->Name = L"level1";
+			this->level1->Size = System::Drawing::Size(13, 13);
+			this->level1->TabIndex = 34;
+			this->level1->Text = L"0";
 			// 
 			// MyForm
 			// 
@@ -219,6 +191,7 @@ namespace Projekt2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->ClientSize = System::Drawing::Size(849, 570);
+			this->Controls->Add(this->level1);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -274,22 +247,33 @@ void Elevator(int x)
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		floor.push_back(FIRST_FLOOR);
 			this->timer1->Start();
+			queue1 = queue1 + "," + lvl1;
+			level1->Text = queue1;
 	}
 	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 		floor.push_back(SECOND_FLOOR);
 		this->timer1->Start();
+
+		queue1 = queue1 + "," + lvl2;
+		level1->Text = queue1;
 	}
 	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 		floor.push_back(THIRD_FLOOR);
 		this->timer1->Start();
+		queue1 = queue1 + "," + lvl3;
+		level1->Text = queue1;
 	}
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 		floor.push_back(FOURTH_FLOOR);
 		this->timer1->Start();
+		queue1 = queue1 + "," + lvl4;
+		level1->Text = queue1;
 	}
 	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
 		floor.push_back(FIFTH_FLOOR);
 		this->timer1->Start();
+		queue1 = queue1 + "," + lvl5;
+		level1->Text = queue1;
 	}
 	};
 

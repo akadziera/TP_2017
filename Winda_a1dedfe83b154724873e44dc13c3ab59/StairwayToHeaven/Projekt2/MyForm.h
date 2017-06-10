@@ -2,12 +2,11 @@
 
 #include "Resource.h"
 
-//#define ID_HOME    42
-
 namespace Projekt2 {
+	//Globals
+	std::vector <int> floor;
+	int i = 0;
 
-	int timer = 0;
-	int x = 0;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -20,6 +19,18 @@ namespace Projekt2 {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+
+		String^ lvl1 = "1";
+		String^ lvl2 = "2";
+		String^ lvl3 = "3";
+		String^ lvl4 = "4";
+		String^ lvl5 = "5";
+		String^ queue1;
+		String^ queue2;
+		String^ queue3;
+		String^ queue4;
+		String^ queue5;
+
 	public:
 		MyForm(void)
 		{
@@ -42,32 +53,6 @@ namespace Projekt2 {
 		}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	private: System::Windows::Forms::Timer^  timer1;
@@ -76,35 +61,11 @@ namespace Projekt2 {
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
 	private: System::Windows::Forms::Button^  button5;
+	private: System::Windows::Forms::Label^  level1;
 	private: System::ComponentModel::IContainer^  components;
 
 
 	protected:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	protected:
 
@@ -134,6 +95,7 @@ namespace Projekt2 {
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->level1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -142,7 +104,7 @@ namespace Projekt2 {
 			// 
 			this->pictureBox2->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(305, 2);
+			this->pictureBox2->Location = System::Drawing::Point(307, 460);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(206, 110);
 			this->pictureBox2->TabIndex = 27;
@@ -212,6 +174,16 @@ namespace Projekt2 {
 			this->button5->Text = L"5";
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
+			//
+			// level1
+			//
+			this->level1->AutoSize = true;
+			this->level1->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->level1->Location = System::Drawing::Point(154, 430);
+			this->level1->Name = L"level1";
+			this->level1->Size = System::Drawing::Size(13, 13);
+			this->level1->TabIndex = 34;
+			this->level1->Text = L"0";
 			// 
 			// MyForm
 			// 
@@ -219,6 +191,7 @@ namespace Projekt2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->ClientSize = System::Drawing::Size(849, 570);
+			this->Controls->Add(this->level1);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -236,58 +209,72 @@ namespace Projekt2 {
 
 		}
 
+
+
 		//Elevator controll
 
-void Elevator(int y)
+void Elevator(int x)
 {
-
-	this->timer1->Start();
-	if (this->pictureBox2->Top < y)
+	if (i != 75)
+	{
+		i++;
+		return;
+	}
+	if (this->pictureBox2->Top < x)
 		this->pictureBox2->Top += 1;
-	else if (this->pictureBox2->Top > y)
+	else if (this->pictureBox2->Top > x)
 		this->pictureBox2->Top -= 1;
 	else
+	{
+		i = 0;
+		floor.erase(floor.begin());
+	}
+	if(floor.empty())
 		this->timer1->Stop();
-
-	
-
-
-	
 }
 
 
-#pragma endregion
-private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-	timer++;
-	Elevator(x);
-}
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	#pragma endregion
+	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
+		Elevator(floor[0]);
+	}
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIRST_FLOOR);
+			this->timer1->Start();
+			queue1 = queue1 + "," + lvl1;
+			level1->Text = queue1;
+	}
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(SECOND_FLOOR);
+		this->timer1->Start();
 
-	x = FIRST_FLOOR;
-	Elevator(x);
-}
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = SECOND_FLOOR;
-	Elevator(x);
-}
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = THIRD_FLOOR;
-	Elevator(x);
-}
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = FOURTH_FLOOR;
-	Elevator(x);
-}
-private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = FIFTH_FLOOR;
-	Elevator(x);
-}
-};
+		queue1 = queue1 + "," + lvl2;
+		level1->Text = queue1;
+	}
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(THIRD_FLOOR);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl3;
+		level1->Text = queue1;
+	}
+	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FOURTH_FLOOR);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl4;
+		level1->Text = queue1;
+	}
+	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIFTH_FLOOR);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl5;
+		level1->Text = queue1;
+	}
+	};
 
 }

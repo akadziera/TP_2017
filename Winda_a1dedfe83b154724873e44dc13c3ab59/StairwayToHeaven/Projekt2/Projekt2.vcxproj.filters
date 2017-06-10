@@ -23,5 +23,13 @@
     <ClInclude Include="MyForm.h">
       <Filter>Pliki źródłowe</Filter>
     </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Pliki źródłowe</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MyForm.resx">
+      <Filter>Pliki zasobów</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

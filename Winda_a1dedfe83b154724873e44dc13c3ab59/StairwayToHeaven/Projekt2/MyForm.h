@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Resource.h"
-#include <algorithm>
-#include<iostream>
 
 //#define ID_HOME    42
 

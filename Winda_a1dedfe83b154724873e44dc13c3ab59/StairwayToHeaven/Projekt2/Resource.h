@@ -1,3 +1,6 @@
+//Libraries
+#include <vector>
+
 
 #pragma once
 #define ID_HOME									26

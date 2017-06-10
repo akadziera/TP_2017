@@ -1,13 +1,16 @@
 #pragma once
 
 #include "Resource.h"
+#include <algorithm>
+#include<iostream>
 
 //#define ID_HOME    42
 
 namespace Projekt2 {
+	//Globals
+	std::vector <int> floor;
+	int i = 0;
 
-	int timer = 0;
-	int x = 0;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -105,7 +108,6 @@ namespace Projekt2 {
 
 
 
-
 	protected:
 
 	protected:
@@ -142,7 +144,7 @@ namespace Projekt2 {
 			// 
 			this->pictureBox2->BackColor = System::Drawing::Color::Transparent;
 			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(305, 2);
+			this->pictureBox2->Location = System::Drawing::Point(307, 460);
 			this->pictureBox2->Name = L"pictureBox2";
 			this->pictureBox2->Size = System::Drawing::Size(206, 110);
 			this->pictureBox2->TabIndex = 27;
@@ -240,56 +242,57 @@ namespace Projekt2 {
 
 		//Elevator controll
 
-void Elevator(int y)
+void Elevator(int x)
 {
-
-	this->timer1->Start();
-	if (this->pictureBox2->Top < y)
+	if (i != 75)
+	{
+		i++;
+		return;
+	}
+	if (this->pictureBox2->Top < x)
 		this->pictureBox2->Top += 1;
-	else if (this->pictureBox2->Top > y)
+	else if (this->pictureBox2->Top > x)
 		this->pictureBox2->Top -= 1;
 	else
+	{
+		i = 0;
+		floor.erase(floor.begin());
+	}
+	if(floor.empty())
 		this->timer1->Stop();
-
-	
-
-
-	
 }
 
 
-#pragma endregion
-private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-	timer++;
-	Elevator(x);
-}
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-
-	x = FIRST_FLOOR;
-	Elevator(x);
-}
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = SECOND_FLOOR;
-	Elevator(x);
-}
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = THIRD_FLOOR;
-	Elevator(x);
-}
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = FOURTH_FLOOR;
-	Elevator(x);
-}
-private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
-	x = FIFTH_FLOOR;
-	Elevator(x);
-}
-};
+	#pragma endregion
+	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
+		Elevator(floor[0]);
+	}
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIRST_FLOOR);
+			this->timer1->Start();
+	}
+	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(SECOND_FLOOR);
+		this->timer1->Start();
+	}
+	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(THIRD_FLOOR);
+		this->timer1->Start();
+	}
+	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FOURTH_FLOOR);
+		this->timer1->Start();
+	}
+	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIFTH_FLOOR);
+		this->timer1->Start();
+	}
+	};
 
 }

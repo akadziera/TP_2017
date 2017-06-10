@@ -426,12 +426,16 @@ namespace Dzwig {
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(1114, 190);
+			this->checkBox1->FlatStyle = System::Windows::Forms::FlatStyle::System;
+			this->checkBox1->Font = (gcnew System::Drawing::Font(L"Segoe UI Symbol", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->checkBox1->Location = System::Drawing::Point(1036, 185);
 			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(78, 17);
+			this->checkBox1->Size = System::Drawing::Size(124, 26);
 			this->checkBox1->TabIndex = 25;
 			this->checkBox1->Text = L"zwolnij hak";
 			this->checkBox1->UseVisualStyleBackColor = true;
+			this->checkBox1->Visible = false;
 			// 
 			// MyForm
 			// 
@@ -496,6 +500,7 @@ private: System::Void DostosujDzwig_Click(System::Object^  sender, System::Event
 	down->Visible = false;
 	left->Visible = false;
 	right->Visible = false;
+	checkBox1->Visible = false;
 
 	dzwig->Visible = true;
 	menu->Visible = true;
@@ -543,6 +548,7 @@ private: System::Void menu_Click(System::Object^  sender, System::EventArgs^  e)
 	left->Visible = false;
 	right->Visible = false;
 	box->Visible = false;
+	checkBox1->Visible = false;
 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -583,6 +589,7 @@ private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e)
 	left->Visible = true;
 	right->Visible = true;
 	box->Visible = true;
+	checkBox1->Visible = true;
 
 	obraz1->Visible = false;
 	obraz2->Visible = false;
@@ -615,6 +622,12 @@ private: System::Void right_Click(System::Object^  sender, System::EventArgs^  e
 		}
 	
 	}
+	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+
+		box->Location = System::Drawing::Point(box->Location.X, 415);
+		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);
+
+	}
 }
 private: System::Void down_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (hak->Location.Y < 350)
@@ -635,6 +648,12 @@ private: System::Void down_Click(System::Object^  sender, System::EventArgs^  e)
 			} while (box->Location.Y <= 350 && licznik == 1);
 		}
 	}
+	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+
+		box->Location = System::Drawing::Point(box->Location.X, 415);
+		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);
+
+	}
 		//MessageBox::Show("teraz ma byæ przycisk chwyæ/zwolnij", "Jest na dole", MessageBoxButtons::OK);
 
 }
@@ -654,6 +673,12 @@ private: System::Void up_Click(System::Object^  sender, System::EventArgs^  e) {
 
 			} while (box->Location.Y <= 350 && licznik == 1);
 		}
+	}
+	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+		
+		box->Location = System::Drawing::Point(box->Location.X , 415);
+		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);
+
 	}
 
 	if (hak->Location.Y > 88)															 //RUSZANIE W GÓRÊ
@@ -677,6 +702,12 @@ private: System::Void left_Click(System::Object^  sender, System::EventArgs^  e)
 
 			} while (box->Location.Y <= 350 && licznik == 1);
 		}
+	}
+	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+
+		box->Location = System::Drawing::Point(box->Location.X, 415);
+		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);
+
 	}
 }
 private: System::Void zwolnij_Click(System::Object^  sender, System::EventArgs^  e) {

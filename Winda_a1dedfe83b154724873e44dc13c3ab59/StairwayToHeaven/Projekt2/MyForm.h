@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Resource.h"
+#include <vector>
+#include <iostream>
+#include <algorithm>
 
 namespace Projekt2 {
 	//Globals
@@ -19,7 +22,7 @@ namespace Projekt2 {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
-
+		//
 		String^ lvl1 = "1";
 		String^ lvl2 = "2";
 		String^ lvl3 = "3";
@@ -29,7 +32,27 @@ namespace Projekt2 {
 		String^ queue2;
 		String^ queue3;
 		String^ queue4;
-		String^ queue5;
+	private: System::Windows::Forms::Button^  button3_1;
+	private: System::Windows::Forms::Button^  button3_2;
+	private: System::Windows::Forms::Button^  button3_4;
+	private: System::Windows::Forms::Button^  button3_5;
+	private: System::Windows::Forms::Button^  button5_2;
+	private: System::Windows::Forms::Button^  button5_1;
+	private: System::Windows::Forms::Button^  button4_1;
+	private: System::Windows::Forms::Button^  button4_2;
+	private: System::Windows::Forms::Button^  button4_3;
+	private: System::Windows::Forms::Button^  button4_5;
+	private: System::Windows::Forms::Button^  button2_1;
+	private: System::Windows::Forms::Button^  button2_3;
+	private: System::Windows::Forms::Button^  button2_4;
+	private: System::Windows::Forms::Button^  button2_5;
+	private: System::Windows::Forms::Button^  button1_5;
+	private: System::Windows::Forms::Button^  button1_4;
+	private: System::Windows::Forms::Button^  button1_3;
+	private: System::Windows::Forms::Button^  button1_2;
+	private: System::Windows::Forms::Button^  button5_4;
+	private: System::Windows::Forms::Button^  button5_3;
+			 String^ queue5;
 
 	public:
 		MyForm(void)
@@ -56,11 +79,15 @@ namespace Projekt2 {
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
 	private: System::Windows::Forms::Timer^  timer1;
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::Button^  button5;
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^  level1;
 	private: System::ComponentModel::IContainer^  components;
 
@@ -90,12 +117,27 @@ namespace Projekt2 {
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->level1 = (gcnew System::Windows::Forms::Label());
+			this->button3_1 = (gcnew System::Windows::Forms::Button());
+			this->button3_2 = (gcnew System::Windows::Forms::Button());
+			this->button3_4 = (gcnew System::Windows::Forms::Button());
+			this->button3_5 = (gcnew System::Windows::Forms::Button());
+			this->button5_2 = (gcnew System::Windows::Forms::Button());
+			this->button5_1 = (gcnew System::Windows::Forms::Button());
+			this->button4_1 = (gcnew System::Windows::Forms::Button());
+			this->button4_2 = (gcnew System::Windows::Forms::Button());
+			this->button4_3 = (gcnew System::Windows::Forms::Button());
+			this->button4_5 = (gcnew System::Windows::Forms::Button());
+			this->button2_1 = (gcnew System::Windows::Forms::Button());
+			this->button2_3 = (gcnew System::Windows::Forms::Button());
+			this->button2_4 = (gcnew System::Windows::Forms::Button());
+			this->button2_5 = (gcnew System::Windows::Forms::Button());
+			this->button1_5 = (gcnew System::Windows::Forms::Button());
+			this->button1_4 = (gcnew System::Windows::Forms::Button());
+			this->button1_3 = (gcnew System::Windows::Forms::Button());
+			this->button1_2 = (gcnew System::Windows::Forms::Button());
+			this->button5_4 = (gcnew System::Windows::Forms::Button());
+			this->button5_3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -125,58 +167,8 @@ namespace Projekt2 {
 			this->timer1->Interval = 1;
 			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(14, 483);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(21, 28);
-			this->button1->TabIndex = 29;
-			this->button1->Text = L"1";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
-			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(44, 488);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(28, 22);
-			this->button2->TabIndex = 30;
-			this->button2->Text = L"2";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
-			// 
-			// button3
-			// 
-			this->button3->Location = System::Drawing::Point(83, 484);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(30, 26);
-			this->button3->TabIndex = 31;
-			this->button3->Text = L"3";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
-			// 
-			// button4
-			// 
-			this->button4->Location = System::Drawing::Point(124, 484);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(21, 25);
-			this->button4->TabIndex = 32;
-			this->button4->Text = L"4";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
-			// 
-			// button5
-			// 
-			this->button5->Location = System::Drawing::Point(157, 489);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(20, 21);
-			this->button5->TabIndex = 33;
-			this->button5->Text = L"5";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
-			//
 			// level1
-			//
+			// 
 			this->level1->AutoSize = true;
 			this->level1->BackColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->level1->Location = System::Drawing::Point(154, 430);
@@ -185,18 +177,233 @@ namespace Projekt2 {
 			this->level1->TabIndex = 34;
 			this->level1->Text = L"0";
 			// 
+			// button3_1
+			// 
+			this->button3_1->Location = System::Drawing::Point(12, 247);
+			this->button3_1->Name = L"button3_1";
+			this->button3_1->Size = System::Drawing::Size(20, 24);
+			this->button3_1->TabIndex = 35;
+			this->button3_1->Text = L"1";
+			this->button3_1->UseVisualStyleBackColor = true;
+			this->button3_1->Click += gcnew System::EventHandler(this, &MyForm::button3_1_Click);
+			// 
+			// button3_2
+			// 
+			this->button3_2->Location = System::Drawing::Point(38, 247);
+			this->button3_2->Name = L"button3_2";
+			this->button3_2->Size = System::Drawing::Size(20, 24);
+			this->button3_2->TabIndex = 36;
+			this->button3_2->Text = L"2";
+			this->button3_2->UseVisualStyleBackColor = true;
+			this->button3_2->Click += gcnew System::EventHandler(this, &MyForm::button3_2_Click);
+			// 
+			// button3_4
+			// 
+			this->button3_4->Location = System::Drawing::Point(64, 247);
+			this->button3_4->Name = L"button3_4";
+			this->button3_4->Size = System::Drawing::Size(20, 24);
+			this->button3_4->TabIndex = 37;
+			this->button3_4->Text = L"4";
+			this->button3_4->UseVisualStyleBackColor = true;
+			this->button3_4->Click += gcnew System::EventHandler(this, &MyForm::button3_4_Click);
+			// 
+			// button3_5
+			// 
+			this->button3_5->Location = System::Drawing::Point(90, 247);
+			this->button3_5->Name = L"button3_5";
+			this->button3_5->Size = System::Drawing::Size(20, 24);
+			this->button3_5->TabIndex = 38;
+			this->button3_5->Text = L"5";
+			this->button3_5->UseVisualStyleBackColor = true;
+			this->button3_5->Click += gcnew System::EventHandler(this, &MyForm::button3_5_Click);
+			// 
+			// button5_2
+			// 
+			this->button5_2->Location = System::Drawing::Point(38, 47);
+			this->button5_2->Name = L"button5_2";
+			this->button5_2->Size = System::Drawing::Size(20, 24);
+			this->button5_2->TabIndex = 39;
+			this->button5_2->Text = L"2";
+			this->button5_2->UseVisualStyleBackColor = true;
+			this->button5_2->Click += gcnew System::EventHandler(this, &MyForm::button5_2_Click);
+			// 
+			// button5_1
+			// 
+			this->button5_1->Location = System::Drawing::Point(12, 47);
+			this->button5_1->Name = L"button5_1";
+			this->button5_1->Size = System::Drawing::Size(20, 24);
+			this->button5_1->TabIndex = 40;
+			this->button5_1->Text = L"1";
+			this->button5_1->UseVisualStyleBackColor = true;
+			this->button5_1->Click += gcnew System::EventHandler(this, &MyForm::button5_1_Click);
+			// 
+			// button4_1
+			// 
+			this->button4_1->Location = System::Drawing::Point(739, 138);
+			this->button4_1->Name = L"button4_1";
+			this->button4_1->Size = System::Drawing::Size(20, 24);
+			this->button4_1->TabIndex = 41;
+			this->button4_1->Text = L"1";
+			this->button4_1->UseVisualStyleBackColor = true;
+			this->button4_1->Click += gcnew System::EventHandler(this, &MyForm::button4_1_Click);
+			// 
+			// button4_2
+			// 
+			this->button4_2->Location = System::Drawing::Point(765, 138);
+			this->button4_2->Name = L"button4_2";
+			this->button4_2->Size = System::Drawing::Size(20, 24);
+			this->button4_2->TabIndex = 42;
+			this->button4_2->Text = L"2";
+			this->button4_2->UseVisualStyleBackColor = true;
+			this->button4_2->Click += gcnew System::EventHandler(this, &MyForm::button4_2_Click);
+			// 
+			// button4_3
+			// 
+			this->button4_3->Location = System::Drawing::Point(791, 138);
+			this->button4_3->Name = L"button4_3";
+			this->button4_3->Size = System::Drawing::Size(20, 24);
+			this->button4_3->TabIndex = 43;
+			this->button4_3->Text = L"3";
+			this->button4_3->UseVisualStyleBackColor = true;
+			this->button4_3->Click += gcnew System::EventHandler(this, &MyForm::button4_3_Click);
+			// 
+			// button4_5
+			// 
+			this->button4_5->Location = System::Drawing::Point(817, 138);
+			this->button4_5->Name = L"button4_5";
+			this->button4_5->Size = System::Drawing::Size(20, 24);
+			this->button4_5->TabIndex = 44;
+			this->button4_5->Text = L"5";
+			this->button4_5->UseVisualStyleBackColor = true;
+			this->button4_5->Click += gcnew System::EventHandler(this, &MyForm::button4_5_Click);
+			// 
+			// button2_1
+			// 
+			this->button2_1->Location = System::Drawing::Point(739, 366);
+			this->button2_1->Name = L"button2_1";
+			this->button2_1->Size = System::Drawing::Size(20, 24);
+			this->button2_1->TabIndex = 45;
+			this->button2_1->Text = L"1";
+			this->button2_1->UseVisualStyleBackColor = true;
+			this->button2_1->Click += gcnew System::EventHandler(this, &MyForm::button2_1_Click);
+			// 
+			// button2_3
+			// 
+			this->button2_3->Location = System::Drawing::Point(765, 366);
+			this->button2_3->Name = L"button2_3";
+			this->button2_3->Size = System::Drawing::Size(20, 24);
+			this->button2_3->TabIndex = 46;
+			this->button2_3->Text = L"3";
+			this->button2_3->UseVisualStyleBackColor = true;
+			this->button2_3->Click += gcnew System::EventHandler(this, &MyForm::button2_3_Click);
+			// 
+			// button2_4
+			// 
+			this->button2_4->Location = System::Drawing::Point(791, 366);
+			this->button2_4->Name = L"button2_4";
+			this->button2_4->Size = System::Drawing::Size(20, 24);
+			this->button2_4->TabIndex = 47;
+			this->button2_4->Text = L"4";
+			this->button2_4->UseVisualStyleBackColor = true;
+			this->button2_4->Click += gcnew System::EventHandler(this, &MyForm::button2_4_Click);
+			// 
+			// button2_5
+			// 
+			this->button2_5->Location = System::Drawing::Point(817, 366);
+			this->button2_5->Name = L"button2_5";
+			this->button2_5->Size = System::Drawing::Size(20, 24);
+			this->button2_5->TabIndex = 48;
+			this->button2_5->Text = L"5";
+			this->button2_5->UseVisualStyleBackColor = true;
+			this->button2_5->Click += gcnew System::EventHandler(this, &MyForm::button2_5_Click);
+			// 
+			// button1_5
+			// 
+			this->button1_5->Location = System::Drawing::Point(90, 484);
+			this->button1_5->Name = L"button1_5";
+			this->button1_5->Size = System::Drawing::Size(20, 24);
+			this->button1_5->TabIndex = 49;
+			this->button1_5->Text = L"5";
+			this->button1_5->UseVisualStyleBackColor = true;
+			this->button1_5->Click += gcnew System::EventHandler(this, &MyForm::button1_5_Click);
+			// 
+			// button1_4
+			// 
+			this->button1_4->Location = System::Drawing::Point(64, 484);
+			this->button1_4->Name = L"button1_4";
+			this->button1_4->Size = System::Drawing::Size(20, 24);
+			this->button1_4->TabIndex = 50;
+			this->button1_4->Text = L"4";
+			this->button1_4->UseVisualStyleBackColor = true;
+			this->button1_4->Click += gcnew System::EventHandler(this, &MyForm::button1_4_Click);
+			// 
+			// button1_3
+			// 
+			this->button1_3->Location = System::Drawing::Point(38, 484);
+			this->button1_3->Name = L"button1_3";
+			this->button1_3->Size = System::Drawing::Size(20, 24);
+			this->button1_3->TabIndex = 51;
+			this->button1_3->Text = L"3";
+			this->button1_3->UseVisualStyleBackColor = true;
+			this->button1_3->Click += gcnew System::EventHandler(this, &MyForm::button1_3_Click);
+			// 
+			// button1_2
+			// 
+			this->button1_2->Location = System::Drawing::Point(12, 484);
+			this->button1_2->Name = L"button1_2";
+			this->button1_2->Size = System::Drawing::Size(20, 24);
+			this->button1_2->TabIndex = 52;
+			this->button1_2->Text = L"2";
+			this->button1_2->UseVisualStyleBackColor = true;
+			this->button1_2->Click += gcnew System::EventHandler(this, &MyForm::button1_2_Click);
+			// 
+			// button5_4
+			// 
+			this->button5_4->Location = System::Drawing::Point(90, 47);
+			this->button5_4->Name = L"button5_4";
+			this->button5_4->Size = System::Drawing::Size(20, 24);
+			this->button5_4->TabIndex = 53;
+			this->button5_4->Text = L"4";
+			this->button5_4->UseVisualStyleBackColor = true;
+			this->button5_4->Click += gcnew System::EventHandler(this, &MyForm::button5_4_Click);
+			// 
+			// button5_3
+			// 
+			this->button5_3->Location = System::Drawing::Point(64, 47);
+			this->button5_3->Name = L"button5_3";
+			this->button5_3->Size = System::Drawing::Size(20, 24);
+			this->button5_3->TabIndex = 54;
+			this->button5_3->Text = L"3";
+			this->button5_3->UseVisualStyleBackColor = true;
+			this->button5_3->Click += gcnew System::EventHandler(this, &MyForm::button5_3_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->ClientSize = System::Drawing::Size(849, 570);
+			this->Controls->Add(this->button5_3);
+			this->Controls->Add(this->button5_4);
+			this->Controls->Add(this->button1_2);
+			this->Controls->Add(this->button1_3);
+			this->Controls->Add(this->button1_4);
+			this->Controls->Add(this->button1_5);
+			this->Controls->Add(this->button2_5);
+			this->Controls->Add(this->button2_4);
+			this->Controls->Add(this->button2_3);
+			this->Controls->Add(this->button2_1);
+			this->Controls->Add(this->button4_5);
+			this->Controls->Add(this->button4_3);
+			this->Controls->Add(this->button4_2);
+			this->Controls->Add(this->button4_1);
+			this->Controls->Add(this->button5_1);
+			this->Controls->Add(this->button5_2);
+			this->Controls->Add(this->button3_5);
+			this->Controls->Add(this->button3_4);
+			this->Controls->Add(this->button3_2);
+			this->Controls->Add(this->button3_1);
 			this->Controls->Add(this->level1);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->pictureBox2);
 			this->Controls->Add(this->pictureBox1);
 			this->Cursor = System::Windows::Forms::Cursors::IBeam;
@@ -206,6 +413,7 @@ namespace Projekt2 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 
@@ -234,6 +442,44 @@ void Elevator(int x)
 }
 
 
+void Passengers(std::vector<int>&)
+{
+	for (int i = 0; i < floor.size(); i++)
+	{
+		int x = floor[i];
+		for (int j = i+1; j < floor.size(); j++)
+		{
+			if (floor[j] == x)
+			{
+				floor.erase(floor.begin()+j);
+			}
+		}
+	}
+	
+}
+/*void Sort(std::vector<int>&)
+{
+
+
+
+	
+	int x, y, z;
+	 x = floor[0];
+	 y = floor[1];
+	if (x < y)
+	{
+		for (int i; i < floor.size(); i++)
+		{
+			if (floor[i] == 5)
+				 z = i;
+		}
+		sort(floor.begin(), floor.end());
+	}
+
+}*/
+
+
+
 	#pragma endregion
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
@@ -244,7 +490,7 @@ void Elevator(int x)
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
 		Elevator(floor[0]);
 	}
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	/*private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		floor.push_back(FIRST_FLOOR);
 			this->timer1->Start();
 			queue1 = queue1 + "," + lvl1;
@@ -273,6 +519,168 @@ void Elevator(int x)
 		floor.push_back(FIFTH_FLOOR);
 		this->timer1->Start();
 		queue1 = queue1 + "," + lvl5;
+		level1->Text = queue1;
+	}*/
+
+	//Buttons
+	private: System::Void button1_2_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIRST_FLOOR);
+		floor.push_back(SECOND_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button1_3_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIRST_FLOOR);
+		floor.push_back(THIRD_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button1_4_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIRST_FLOOR);
+		floor.push_back(FOURTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button1_5_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIRST_FLOOR);
+		floor.push_back(FIFTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button2_1_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(SECOND_FLOOR);
+		floor.push_back(FIRST_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button2_3_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(SECOND_FLOOR);
+		floor.push_back(THIRD_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button2_4_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(SECOND_FLOOR);
+		floor.push_back(FOURTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button2_5_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(SECOND_FLOOR);
+		floor.push_back(FIFTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button3_1_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(THIRD_FLOOR);
+		floor.push_back(FIRST_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button3_2_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(THIRD_FLOOR);
+		floor.push_back(SECOND_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button3_4_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(THIRD_FLOOR);
+		floor.push_back(FOURTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button3_5_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(THIRD_FLOOR);
+		floor.push_back(FIFTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button4_1_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FOURTH_FLOOR);
+		floor.push_back(FIRST_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button4_2_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FOURTH_FLOOR);
+		floor.push_back(SECOND_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button4_3_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FOURTH_FLOOR);
+		floor.push_back(THIRD_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button4_5_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FOURTH_FLOOR);
+		floor.push_back(FIFTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button5_1_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIFTH_FLOOR);
+		floor.push_back(FIRST_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button5_2_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIFTH_FLOOR);
+		floor.push_back(SECOND_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button5_3_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIFTH_FLOOR);
+		floor.push_back(THIRD_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
+		level1->Text = queue1;
+	}
+	private: System::Void button5_4_Click(System::Object^  sender, System::EventArgs^  e) {
+		floor.push_back(FIFTH_FLOOR);
+		floor.push_back(FOURTH_FLOOR);
+		Passengers(floor);
+		this->timer1->Start();
+		queue1 = queue1 + "," + lvl1;
 		level1->Text = queue1;
 	}
 	};

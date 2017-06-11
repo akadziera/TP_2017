@@ -1,2 +1,4 @@
 ﻿  MyForm.cpp
+c:\users\kanka\desktop\paweł\studia\programowanie\tp_2017\winda_a1dedfe83b154724873e44dc13c3ab59\stairwaytoheaven\projekt2\MyForm.h(447): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+c:\users\kanka\desktop\paweł\studia\programowanie\tp_2017\winda_a1dedfe83b154724873e44dc13c3ab59\stairwaytoheaven\projekt2\MyForm.h(450): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
   Projekt2.vcxproj -> C:\Users\Kanka\Desktop\Paweł\Studia\Programowanie\TP_2017\Winda_a1dedfe83b154724873e44dc13c3ab59\StairwayToHeaven\Debug\Projekt2.exe

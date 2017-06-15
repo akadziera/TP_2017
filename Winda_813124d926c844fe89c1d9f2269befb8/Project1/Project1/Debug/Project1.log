@@ -1,3 +1,8 @@
 ﻿  MyForm.cpp
-c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\myform.h(853): warning C4172: returning address of local variable or temporary: Ludz
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(869): warning C4018: '<': signed/unsigned mismatch
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(877): warning C4018: '<': signed/unsigned mismatch
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(882): warning C4018: '<': signed/unsigned mismatch
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(881): warning C4102: 'xd': unreferenced label
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(886): warning C4102: 'xdd': unreferenced label
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(1063): warning C4018: '<': signed/unsigned mismatch
   Project1.vcxproj -> C:\Users\Mikołaj\Desktop\Project1\TP_2017\Winda_813124d926c844fe89c1d9f2269befb8\Project1\Debug\Project1.exe

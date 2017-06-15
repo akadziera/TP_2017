@@ -38,12 +38,13 @@ namespace Project1 {
 	{
 		static
 			int czas = 0;
-		bool przesuniecie=false;
+		//bool przesuniecie=false;
 			 int pietro = 0;
 			 int czlek=0;
 			 int gdzie_jedziemy = 0;
 			 int waga = 0;
 			 int numer_kolejki = 0;
+			 int przesuniecie = 0;
 			 
 	private: System::Windows::Forms::MaskedTextBox^  maskedekran_pietro;
 	private: System::Windows::Forms::Button^  button3;
@@ -103,6 +104,8 @@ namespace Project1 {
 	private: System::Windows::Forms::MaskedTextBox^  r3;
 	private: System::Windows::Forms::MaskedTextBox^  r4;
 	private: System::Windows::Forms::Timer^  Liczniki;
+	private: System::Windows::Forms::Timer^  postoj;
+	private: System::Windows::Forms::Timer^  biernie;
 
 
 
@@ -253,6 +256,8 @@ namespace Project1 {
 			this->r3 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->r4 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->Liczniki = (gcnew System::Windows::Forms::Timer(this->components));
+			this->postoj = (gcnew System::Windows::Forms::Timer(this->components));
+			this->biernie = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ludzik))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -763,8 +768,18 @@ namespace Project1 {
 			// Liczniki
 			// 
 			this->Liczniki->Enabled = true;
-			this->Liczniki->Interval = 1;
+			this->Liczniki->Interval = 5;
 			this->Liczniki->Tick += gcnew System::EventHandler(this, &MyForm::Liczniki_Tick);
+			// 
+			// postoj
+			// 
+			this->postoj->Interval = 500;
+			this->postoj->Tick += gcnew System::EventHandler(this, &MyForm::postoj_Tick);
+			// 
+			// biernie
+			// 
+			this->biernie->Interval = 1;
+			this->biernie->Tick += gcnew System::EventHandler(this, &MyForm::biernie_Tick);
 			// 
 			// MyForm
 			// 
@@ -838,24 +853,9 @@ namespace Project1 {
 			this->PerformLayout();
 
 		}
-
-		public: PictureBox^ *Kreator(int X, int Y, PictureBox^ * &Buff)
-		{
-			PictureBox^ Ludz = gcnew PictureBox();
-			Ludz->Location = Point(X, Y);
-			Ludz->Size = System::Drawing::Size(51, 74);
-			Ludz->Load("GingerbreadMan1.jpg");
-			Ludz->BackColor = System::Drawing::Color::Transparent;
-			this->Controls->Add(Ludz);
-			Ludz->BringToFront();
-			PictureBox^ *Wsk = &Ludz;
-			Buff = &Ludz;
-			return Wsk;
-		}
-
 public:void Jazda(int gdzie_jedziemy)
 {
-	this->Parter->Stop();
+	//this->Parter->Stop();
 	if (pietro > gdzie_jedziemy) {
 		this->zegar_dol->Start();
 	}
@@ -864,33 +864,35 @@ public:void Jazda(int gdzie_jedziemy)
 	}
 	
 	if (pietro == gdzie_jedziemy) {
-		this->Parter->Start();
-	if(numer_kolejki<Kolejka.size())	numer_kolejki++;
+	//	this->Parter->Start();
+		
+		if (numer_kolejki+1 < Kolejka.size() ) {
+			postoj->Start();
+		}
+		else  biernie->Start();
 	}
 }
 	public:void Dopychanie(int a, int b)
 	{
-		for (int i = 0; i < Kolejka.size(); i++) {
-			if (Kolejka[i] == a) break;
-			if (i = Kolejka.size() - 1) Kolejka.push_back(a);
+		for (int i = numer_kolejki; i < Kolejka.size(); i++) {
+		//	if (Kolejka[i] == a) goto xd;
 		}
-		for (int i = 0; i < Kolejka.size(); i++) {
-			if (Kolejka[i] == b) break;
-			if (i = Kolejka.size() - 1) Kolejka.push_back(b);
-		}
+			Kolejka.push_back(a);
+			xd:
+			for (int i =numer_kolejki; i < Kolejka.size(); i++) {
+			//	if (Kolejka[i] == b) goto xdd;
+			}
+			Kolejka.push_back(b);
+		xdd:
+			this->w4->Text = Convert::ToString(Kolejka.size());
 	}
 
 #pragma endregion
-	private: System::Void Gora_Click(System::Object^  sender, System::EventArgs^  e) {
-		this->zegar_gora->Start();
-		
-	}
 	private: System::Void zegar_gora_Tick(System::Object^  sender, System::EventArgs^  e) {
 		this->pictureBox2->Top += -3;
 		this->ekran_pietro->Top += -3;
 		this->winda->Top += -3;
 		czas++;
-		//if (przesuniecie = true)	this->ludzik->Top += -3;
 		if (czas == 38) {
 			this->zegar_gora->Stop();
 			czas = 0;
@@ -899,21 +901,10 @@ public:void Jazda(int gdzie_jedziemy)
 			Jazda(Kolejka[numer_kolejki]);
 		}
 		}
-	
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-	this->zegar_dol->Start();
-	
-	//tab[2]->Parent = this;
-	//tab[2]->Location = System::Drawing::Point(102, 540);
-	//tab[2]->Size = System::Drawing::Size(51, 74);
-	//tab[2]->BringToFront();
-	//tab[2]->Load("GingerbreadMan1.jpg");
-}
 private: System::Void zegar_dol_Tick(System::Object^  sender, System::EventArgs^  e) {
 	this->pictureBox2->Top += 3;
 	this->ekran_pietro->Top += 3;
 	this->winda->Top += 3;
-	//if(przesuniecie=true)	this->ludzik->Top += 3;
 	czas++;
 	if (czas == 38) {
 		this->zegar_dol->Stop();
@@ -995,7 +986,7 @@ private: System::Void p21_Click(System::Object^  sender, System::EventArgs^  e) 
 private: System::Void p23_Click(System::Object^  sender, System::EventArgs^  e) {
 	ekrany[12]++;
 	ekrany[14]++;
-	Dopychanie(1, 2);
+	Dopychanie(2, 3);
 }
 private: System::Void p24_Click(System::Object^  sender, System::EventArgs^  e) {
 	ekrany[13]++;
@@ -1069,8 +1060,28 @@ private: System::Void Liczniki_Tick(System::Object^  sender, System::EventArgs^ 
 	this->t42->Text = Convert::ToString(ekrany[22]);
 	this->t43->Text = Convert::ToString(ekrany[23]);
 	this->r4->Text = Convert::ToString(ekrany[24]);
-
-
+	if (numer_kolejki < Kolejka.size()) {
+	if(numer_kolejki==0)   Jazda(Kolejka[numer_kolejki]);
+		}	
+	//this->w4->Text = Convert::ToString(Kolejka.size());
+	this->w3->Text = Convert::ToString(numer_kolejki);
+}
+private: System::Void postoj_Tick(System::Object^  sender, System::EventArgs^  e) {
+	czas++;
+	if (czas == 2) {
+		this->postoj->Stop();
+		czas = 0;
+		numer_kolejki++;
+		this->w3->Text = Convert::ToString(numer_kolejki);
+		Jazda(Kolejka[numer_kolejki]);
+	}
+	
+}
+private: System::Void biernie_Tick(System::Object^  sender, System::EventArgs^  e) {
+	if (Kolejka.size() - numer_kolejki > 2) {
+		biernie->Stop();
+		Jazda(Kolejka[numer_kolejki]);
+	}
 }
 };
 }
@@ -1112,5 +1123,19 @@ czas = 0;
 waga = waga + 70;
 this->Masa->Text = Convert::ToString(waga);
 }
+}
+
+public: PictureBox^ *Kreator(int X, int Y, PictureBox^ * &Buff)
+{
+PictureBox^ Ludz = gcnew PictureBox();
+Ludz->Location = Point(X, Y);
+Ludz->Size = System::Drawing::Size(51, 74);
+Ludz->Load("GingerbreadMan1.jpg");
+Ludz->BackColor = System::Drawing::Color::Transparent;
+this->Controls->Add(Ludz);
+Ludz->BringToFront();
+PictureBox^ *Wsk = &Ludz;
+Buff = &Ludz;
+return Wsk;
 }
 */

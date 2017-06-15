@@ -20,12 +20,14 @@ namespace WindowsFormsApp1
         private int x;
         private int y;
         private int z;
-       
+        private int m;
+
         private string mytext;
         private int pietropierwsze;
         private int pietrodrugie;
         private int normalweight = 70;
         private int maxweight = 600;
+        private int weight;
         public struct Passenger
         {
             public int id;
@@ -33,8 +35,9 @@ namespace WindowsFormsApp1
 
         }
 
-        List<int> passenger1 = new List<int>();
-        List<int> passenger2 = new List<int>();
+        Queue<int> passenger1 = new Queue<int>();
+        Queue<int> passenger2 = new Queue<int>();
+        Queue<int> lift = new Queue<int>();
 
         public Form1()
         {
@@ -44,6 +47,7 @@ namespace WindowsFormsApp1
             y = 50;
             i = 0;
             j = 0;
+            m= 0;
         }
 
         private void Form1_View(object sender, PaintEventArgs e) {
@@ -104,8 +108,8 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            passenger1.Add(i);
-            i++;
+            passenger1.Enqueue(i);
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -121,12 +125,19 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show(i.ToString());
+            System.Windows.Forms.MessageBox.Show(m.ToString());
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-           passenger1.RemoveAt(1);
+            if (lift.Count() < 8) {
+                passenger1.Dequeue();
+                lift.Enqueue(m);
+                m = lift.Count();
+                weight = m * normalweight;
+                System.Windows.Forms.MessageBox.Show(weight.ToString());
+            }
+
         }
     }
 }

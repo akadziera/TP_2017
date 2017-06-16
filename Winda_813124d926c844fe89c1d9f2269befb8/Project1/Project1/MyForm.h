@@ -32,6 +32,7 @@ namespace Project1 {
 		int numer_kolejki = 0;
 		int przesuniecie = 0;
 		int przerzutka = 0;
+		int ciezar = 0;
 
 
 
@@ -146,6 +147,11 @@ private: System::Windows::Forms::Label^  label45;
 private: System::Windows::Forms::Label^  label46;
 private: System::Windows::Forms::Label^  label47;
 private: System::Windows::Forms::Label^  label48;
+private: System::Windows::Forms::Label^  label49;
+private: System::Windows::Forms::Label^  label50;
+private: System::Windows::Forms::Label^  label51;
+private: System::Windows::Forms::Label^  label52;
+private: System::Windows::Forms::Label^  label53;
 	private: System::ComponentModel::IContainer^  components;
 
 	public:
@@ -318,6 +324,11 @@ private: System::Windows::Forms::Label^  label48;
 			this->label46 = (gcnew System::Windows::Forms::Label());
 			this->label47 = (gcnew System::Windows::Forms::Label());
 			this->label48 = (gcnew System::Windows::Forms::Label());
+			this->label49 = (gcnew System::Windows::Forms::Label());
+			this->label50 = (gcnew System::Windows::Forms::Label());
+			this->label51 = (gcnew System::Windows::Forms::Label());
+			this->label52 = (gcnew System::Windows::Forms::Label());
+			this->label53 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ludzik))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -1291,11 +1302,61 @@ private: System::Windows::Forms::Label^  label48;
 			this->label48->TabIndex = 112;
 			this->label48->Text = L"Stwórz pasa¿era jad¹cego na piêtro";
 			// 
+			// label49
+			// 
+			this->label49->AutoSize = true;
+			this->label49->Location = System::Drawing::Point(461, 469);
+			this->label49->Name = L"label49";
+			this->label49->Size = System::Drawing::Size(43, 13);
+			this->label49->TabIndex = 113;
+			this->label49->Text = L"Piêtro 0";
+			// 
+			// label50
+			// 
+			this->label50->AutoSize = true;
+			this->label50->Location = System::Drawing::Point(865, 350);
+			this->label50->Name = L"label50";
+			this->label50->Size = System::Drawing::Size(43, 13);
+			this->label50->TabIndex = 114;
+			this->label50->Text = L"Piêtro 1";
+			// 
+			// label51
+			// 
+			this->label51->AutoSize = true;
+			this->label51->Location = System::Drawing::Point(461, 246);
+			this->label51->Name = L"label51";
+			this->label51->Size = System::Drawing::Size(43, 13);
+			this->label51->TabIndex = 115;
+			this->label51->Text = L"Piêtro 2";
+			// 
+			// label52
+			// 
+			this->label52->AutoSize = true;
+			this->label52->Location = System::Drawing::Point(865, 163);
+			this->label52->Name = L"label52";
+			this->label52->Size = System::Drawing::Size(43, 13);
+			this->label52->TabIndex = 116;
+			this->label52->Text = L"Piêtro 3";
+			// 
+			// label53
+			// 
+			this->label53->AutoSize = true;
+			this->label53->Location = System::Drawing::Point(461, 73);
+			this->label53->Name = L"label53";
+			this->label53->Size = System::Drawing::Size(43, 13);
+			this->label53->TabIndex = 117;
+			this->label53->Text = L"Piêtro 4";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1346, 652);
+			this->Controls->Add(this->label53);
+			this->Controls->Add(this->label52);
+			this->Controls->Add(this->label51);
+			this->Controls->Add(this->label50);
+			this->Controls->Add(this->label49);
 			this->Controls->Add(this->label48);
 			this->Controls->Add(this->label47);
 			this->Controls->Add(this->label46);
@@ -1449,17 +1510,27 @@ private: System::Windows::Forms::Label^  label48;
 	//xdd:
 	}
 	public:void Wsiadanie(int pietro) {
-		//for (int i = 0; i < (ekrany[25 + pietro] + ekrany[4 + (5 * pietro)]); i++) {
-		for (int i = 0; i < 5; i++) {
+	//	int a = 0;
+	//	if (ekrany[25 + pietro] > ekrany[4 + (5 * pietro)]) a = ekrany[25 + pietro];
+	//	else a = ekrany[4 + (5 * pietro)];
+			
+	//	for (int i = 0; i <a; i++) {
+		for (int i = 0; i < 15; i++) {
 			if (ekrany[25 + pietro] != 0) {
 				ekrany[25 + pietro]--;
 				ekrany[30 + pietro]++;
+				ciezar = ciezar - 60;
+				
 			}
+
+			if (ciezar > 700) continue;
+
 			if (przerzutka == 4) continue;
+			
 			if (ekrany[(5 * pietro) + przerzutka] != 0)
 			{
 				ekrany[(5 * pietro) + przerzutka]--;
-
+				ciezar = ciezar + 60;
 				if (pietro == 0)  ekrany[25 + 1+przerzutka]++; 
 				if (pietro == 1) {
 					if (przerzutka == 0) ekrany[25]++;
@@ -1668,7 +1739,7 @@ private: System::Void Liczniki_Tick(System::Object^  sender, System::EventArgs^ 
 	if (numer_kolejki < Kolejka.size()) {
 	if(numer_kolejki==0)   Jazda(Kolejka[numer_kolejki]);
 		}	
-	this->Masa->Text = Convert::ToString(60*(ekrany[29])+ (ekrany[28]) + (ekrany[27]) + (ekrany[26]) + (ekrany[25]));
+	this->Masa->Text = Convert::ToString(ciezar);
 
 }
 private: System::Void postoj_Tick(System::Object^  sender, System::EventArgs^  e) {

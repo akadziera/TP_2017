@@ -5,10 +5,13 @@
 #include <iostream>
 #include <algorithm>
 
+
 namespace Projekt2 {
 	//Globals
-	std::vector <int> floor;
+	std::vector <int> floorPassengers;
+	std::vector< std::vector<int> > floor;
 	int i = 0;
+	bool elevator_stop = false;
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -32,6 +35,8 @@ namespace Projekt2 {
 		String^ queue2;
 		String^ queue3;
 		String^ queue4;
+		String^ queue5;
+
 	private: System::Windows::Forms::Button^  button3_1;
 	private: System::Windows::Forms::Button^  button3_2;
 	private: System::Windows::Forms::Button^  button3_4;
@@ -52,7 +57,13 @@ namespace Projekt2 {
 	private: System::Windows::Forms::Button^  button1_2;
 	private: System::Windows::Forms::Button^  button5_4;
 	private: System::Windows::Forms::Button^  button5_3;
-			 String^ queue5;
+	private: System::Windows::Forms::Label^  level2;
+	private: System::Windows::Forms::Label^  level3;
+	private: System::Windows::Forms::Label^  level4;
+	private: System::Windows::Forms::Label^  level5;
+	private: System::Windows::Forms::Label^  winda;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Label^  escalator;
 
 	public:
 		MyForm(void)
@@ -77,7 +88,7 @@ namespace Projekt2 {
 
 
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
-	private: System::Windows::Forms::PictureBox^  pictureBox1;
+
 	private: System::Windows::Forms::Timer^  timer1;
 
 
@@ -115,7 +126,6 @@ namespace Projekt2 {
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->level1 = (gcnew System::Windows::Forms::Label());
 			this->button3_1 = (gcnew System::Windows::Forms::Button());
@@ -138,6 +148,13 @@ namespace Projekt2 {
 			this->button1_2 = (gcnew System::Windows::Forms::Button());
 			this->button5_4 = (gcnew System::Windows::Forms::Button());
 			this->button5_3 = (gcnew System::Windows::Forms::Button());
+			this->level2 = (gcnew System::Windows::Forms::Label());
+			this->level3 = (gcnew System::Windows::Forms::Label());
+			this->level4 = (gcnew System::Windows::Forms::Label());
+			this->level5 = (gcnew System::Windows::Forms::Label());
+			this->winda = (gcnew System::Windows::Forms::Label());
+			this->escalator = (gcnew System::Windows::Forms::Label());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -152,15 +169,6 @@ namespace Projekt2 {
 			this->pictureBox2->TabIndex = 27;
 			this->pictureBox2->TabStop = false;
 			this->pictureBox2->Click += gcnew System::EventHandler(this, &MyForm::pictureBox2_Click);
-			// 
-			// pictureBox1
-			// 
-			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->Location = System::Drawing::Point(0, 2);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(851, 568);
-			this->pictureBox1->TabIndex = 28;
-			this->pictureBox1->TabStop = false;
 			// 
 			// timer1
 			// 
@@ -377,12 +385,82 @@ namespace Projekt2 {
 			this->button5_3->UseVisualStyleBackColor = true;
 			this->button5_3->Click += gcnew System::EventHandler(this, &MyForm::button5_3_Click);
 			// 
+			// level2
+			// 
+			this->level2->AutoSize = true;
+			this->level2->Location = System::Drawing::Point(678, 322);
+			this->level2->Name = L"level2";
+			this->level2->Size = System::Drawing::Size(13, 13);
+			this->level2->TabIndex = 55;
+			this->level2->Text = L"0";
+			// 
+			// level3
+			// 
+			this->level3->AutoSize = true;
+			this->level3->Location = System::Drawing::Point(71, 201);
+			this->level3->Name = L"level3";
+			this->level3->Size = System::Drawing::Size(13, 13);
+			this->level3->TabIndex = 56;
+			this->level3->Text = L"0";
+			// 
+			// level4
+			// 
+			this->level4->AutoSize = true;
+			this->level4->Location = System::Drawing::Point(678, 91);
+			this->level4->Name = L"level4";
+			this->level4->Size = System::Drawing::Size(13, 13);
+			this->level4->TabIndex = 57;
+			this->level4->Text = L"0";
+			this->level4->TextAlign = System::Drawing::ContentAlignment::TopRight;
+			// 
+			// level5
+			// 
+			this->level5->AutoSize = true;
+			this->level5->Location = System::Drawing::Point(71, 19);
+			this->level5->Name = L"level5";
+			this->level5->Size = System::Drawing::Size(13, 13);
+			this->level5->TabIndex = 58;
+			this->level5->Text = L"0";
+			// 
+			// winda
+			// 
+			this->winda->AutoSize = true;
+			this->winda->Location = System::Drawing::Point(536, 19);
+			this->winda->Name = L"winda";
+			this->winda->Size = System::Drawing::Size(41, 13);
+			this->winda->TabIndex = 59;
+			this->winda->Text = L"Winda:";
+			// 
+			// escalator
+			// 
+			this->escalator->AutoSize = true;
+			this->escalator->Location = System::Drawing::Point(583, 19);
+			this->escalator->Name = L"escalator";
+			this->escalator->Size = System::Drawing::Size(13, 13);
+			this->escalator->TabIndex = 60;
+			this->escalator->Text = L"0";
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+			this->pictureBox1->Location = System::Drawing::Point(1, 2);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(847, 597);
+			this->pictureBox1->TabIndex = 61;
+			this->pictureBox1->TabStop = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->ClientSize = System::Drawing::Size(849, 570);
+			this->Controls->Add(this->escalator);
+			this->Controls->Add(this->winda);
+			this->Controls->Add(this->level5);
+			this->Controls->Add(this->level4);
+			this->Controls->Add(this->level3);
+			this->Controls->Add(this->level2);
 			this->Controls->Add(this->button5_3);
 			this->Controls->Add(this->button5_4);
 			this->Controls->Add(this->button1_2);
@@ -435,27 +513,28 @@ void Elevator(int x)
 	else
 	{
 		i = 0;
-		floor.erase(floor.begin());
+		floor[0].erase(floor[0].begin());
+		elevator_stop = true;
 	}
-	if(floor.empty())
+	if (floor[0].empty())
 		this->timer1->Stop();
 }
 
 
-void Passengers(std::vector<int>&)
+void Passengers(std::vector<int>& )
 {
-	for (int i = 0; i < floor.size(); i++)
+	for (int i = 0; i < floor[0].size(); i++)
 	{
-		int x = floor[i];
-		for (int j = i+1; j < floor.size(); j++)
+		int x = floor[0][i];
+		for (int j = i + 1; j < floor[0].size(); j++)
 		{
-			if (floor[j] == x)
+			if (floor[0][j] == x)
 			{
-				floor.erase(floor.begin()+j);
+				floor[0].erase(floor[0].begin() + j);
 			}
 		}
 	}
-	
+
 }
 /*void Sort(std::vector<int>&)
 {
@@ -478,17 +557,25 @@ void Passengers(std::vector<int>&)
 
 }*/
 
+void vectorInizialization(std::vector<int> &, std::vector< std::vector<int> > &)
+{
+	for (int q = 0; q<6; q++)
+		floor.push_back(floorPassengers);
+
+}
 
 
 	#pragma endregion
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+		vectorInizialization(floorPassengers,floor);
 	}
 	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-		Elevator(floor[0]);
+		Elevator(floor[0][0]);
+
 	}
 	/*private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		floor.push_back(FIRST_FLOOR);
@@ -524,164 +611,164 @@ void Passengers(std::vector<int>&)
 
 	//Buttons
 	private: System::Void button1_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIRST_FLOOR);
-		floor.push_back(SECOND_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIRST_FLOOR);
+		floor[1].push_back(SECOND_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
+		queue1 = lvl2 + " " + queue1;
 		level1->Text = queue1;
 	}
 	private: System::Void button1_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIRST_FLOOR);
-		floor.push_back(THIRD_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIRST_FLOOR);
+		floor[1].push_back(THIRD_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
+		queue1 = lvl3 + " " + queue1;
 		level1->Text = queue1;
 	}
 	private: System::Void button1_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIRST_FLOOR);
-		floor.push_back(FOURTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIRST_FLOOR);
+		floor[1].push_back(FOURTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
+		queue1 = lvl4 + " " + queue1;
 		level1->Text = queue1;
 	}
 	private: System::Void button1_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIRST_FLOOR);
-		floor.push_back(FIFTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIRST_FLOOR);
+		floor[1].push_back(FIFTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
+		queue1 = lvl5 + " " + queue1;
 		level1->Text = queue1;
 	}
 	private: System::Void button2_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(SECOND_FLOOR);
-		floor.push_back(FIRST_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(SECOND_FLOOR);
+		floor[2].push_back(FIRST_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue2 = queue2 + " " + lvl1;
+		level2->Text = queue2;
 	}
 	private: System::Void button2_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(SECOND_FLOOR);
-		floor.push_back(THIRD_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(SECOND_FLOOR);
+		floor[2].push_back(THIRD_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue2 = queue2 + " " + lvl3;
+		level2->Text = queue2;
 	}
 	private: System::Void button2_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(SECOND_FLOOR);
-		floor.push_back(FOURTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(SECOND_FLOOR);
+		floor[2].push_back(FOURTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue2 = queue2 + " " + lvl4;
+		level2->Text = queue2;
 	}
 	private: System::Void button2_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(SECOND_FLOOR);
-		floor.push_back(FIFTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(SECOND_FLOOR);
+		floor[2].push_back(FIFTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue2 = queue2 + " " + lvl5;
+		level2->Text = queue2;
 	}
 	private: System::Void button3_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(THIRD_FLOOR);
-		floor.push_back(FIRST_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(THIRD_FLOOR);
+		floor[3].push_back(FIRST_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue3 = lvl1 + " " + queue3;
+		level3->Text = queue3;
 	}
 	private: System::Void button3_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(THIRD_FLOOR);
-		floor.push_back(SECOND_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(THIRD_FLOOR);
+		floor[3].push_back(SECOND_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue3 = lvl2 + " " + queue3;
+		level3->Text = queue3;
 	}
 	private: System::Void button3_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(THIRD_FLOOR);
-		floor.push_back(FOURTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(THIRD_FLOOR);
+		floor[3].push_back(FOURTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue3 = lvl4 + " " + queue3;
+		level3->Text = queue3;
 	}
 	private: System::Void button3_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(THIRD_FLOOR);
-		floor.push_back(FIFTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(THIRD_FLOOR);
+		floor[3].push_back(FIFTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue3 = lvl5 + " " + queue3;
+		level3->Text = queue3;
 	}
 	private: System::Void button4_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FOURTH_FLOOR);
-		floor.push_back(FIRST_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FOURTH_FLOOR);
+		floor[4].push_back(FIRST_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue4 = queue4 + " " + lvl1;
+		level4->Text = queue4;
 	}
 	private: System::Void button4_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FOURTH_FLOOR);
-		floor.push_back(SECOND_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FOURTH_FLOOR);
+		floor[4].push_back(SECOND_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue4 = queue4 + " " + lvl2;
+		level4->Text = queue4;
 	}
 	private: System::Void button4_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FOURTH_FLOOR);
-		floor.push_back(THIRD_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FOURTH_FLOOR);
+		floor[4].push_back(THIRD_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue4 = queue4 + " " + lvl3;
+		level4->Text = queue4;
 	}
 	private: System::Void button4_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FOURTH_FLOOR);
-		floor.push_back(FIFTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FOURTH_FLOOR);
+		floor[4].push_back(FIFTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue4 = queue4 + " " + lvl5;
+		level4->Text = queue4;
 	}
 	private: System::Void button5_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIFTH_FLOOR);
-		floor.push_back(FIRST_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIFTH_FLOOR);
+		floor[5].push_back(FIRST_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue5 = lvl1 + " " + queue5;
+		level5->Text = queue5;
 	}
 	private: System::Void button5_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIFTH_FLOOR);
-		floor.push_back(SECOND_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIFTH_FLOOR);
+		floor[5].push_back(SECOND_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue5 = lvl2 + " " + queue5;
+		level5->Text = queue5;
 	}
 	private: System::Void button5_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIFTH_FLOOR);
-		floor.push_back(THIRD_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIFTH_FLOOR);
+		floor[5].push_back(THIRD_FLOOR);
+		Passengers(floorPassengers);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue5 = lvl3 + " " + queue5;
+		level5->Text = queue5;
 	}
 	private: System::Void button5_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIFTH_FLOOR);
-		floor.push_back(FOURTH_FLOOR);
-		Passengers(floor);
+		floor[0].push_back(FIFTH_FLOOR);
+		floor[5].push_back(FOURTH_FLOOR);
+		Passengers(floor[0]);
 		this->timer1->Start();
-		queue1 = queue1 + "," + lvl1;
-		level1->Text = queue1;
+		queue5 = lvl4 + " " + queue5;
+		level5->Text = queue5;
 	}
 	};
 

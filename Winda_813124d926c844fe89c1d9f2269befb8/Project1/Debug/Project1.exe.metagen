@@ -20,3 +20,4 @@ Class Project1.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   Methods:
     Jazda(Int32): PrivateScope, Public, HideBySig
     Dopychanie(Int32, Int32): PrivateScope, Public, HideBySig
+    Wsiadanie(Int32): PrivateScope, Public, HideBySig

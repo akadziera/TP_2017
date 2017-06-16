@@ -29,7 +29,7 @@ namespace Project1 {
 
 	static vector<ciastki> Ciastkozbior;
 	static vector<int> Kolejka;
-	static int ekrany[25];
+	static int ekrany[30];
 
 	/// <summary>
 	/// Summary for MyForm
@@ -58,7 +58,8 @@ namespace Project1 {
 	private: System::Windows::Forms::MaskedTextBox^  t02;
 	private: System::Windows::Forms::MaskedTextBox^  t03;
 	private: System::Windows::Forms::MaskedTextBox^  t04;
-	private: System::Windows::Forms::MaskedTextBox^  winda;
+	private: System::Windows::Forms::MaskedTextBox^  winda0;
+
 
 	private: System::Windows::Forms::MaskedTextBox^  w1;
 	private: System::Windows::Forms::MaskedTextBox^  w2;
@@ -106,6 +107,11 @@ namespace Project1 {
 	private: System::Windows::Forms::Timer^  Liczniki;
 	private: System::Windows::Forms::Timer^  postoj;
 	private: System::Windows::Forms::Timer^  biernie;
+	private: System::Windows::Forms::MaskedTextBox^  winda1;
+	private: System::Windows::Forms::MaskedTextBox^  winda2;
+	private: System::Windows::Forms::MaskedTextBox^  winda3;
+	private: System::Windows::Forms::MaskedTextBox^  winda4;
+	private: System::Windows::Forms::Button^  button2;
 
 
 
@@ -173,7 +179,7 @@ namespace Project1 {
 	private: System::Windows::Forms::Timer^  zegar_dol;
 
 								private: System::Windows::Forms::PictureBox^  ludzik;
-	private: System::Windows::Forms::Button^  button2;
+
 	private: System::Windows::Forms::Timer^  timer3;
 
 
@@ -196,7 +202,6 @@ namespace Project1 {
 			this->zegar_gora = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ludzik = (gcnew System::Windows::Forms::PictureBox());
 			this->zegar_dol = (gcnew System::Windows::Forms::Timer(this->components));
-			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->timer3 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->ekran_pietro = (gcnew System::Windows::Forms::TextBox());
 			this->maskedekran_pietro = (gcnew System::Windows::Forms::MaskedTextBox());
@@ -211,7 +216,7 @@ namespace Project1 {
 			this->t02 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->t03 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->t04 = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->winda = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->winda0 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->w1 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->w2 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->w3 = (gcnew System::Windows::Forms::MaskedTextBox());
@@ -258,6 +263,11 @@ namespace Project1 {
 			this->Liczniki = (gcnew System::Windows::Forms::Timer(this->components));
 			this->postoj = (gcnew System::Windows::Forms::Timer(this->components));
 			this->biernie = (gcnew System::Windows::Forms::Timer(this->components));
+			this->winda1 = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->winda2 = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->winda3 = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->winda4 = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ludzik))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -290,15 +300,6 @@ namespace Project1 {
 			this->zegar_dol->Interval = 3;
 			this->zegar_dol->Tick += gcnew System::EventHandler(this, &MyForm::zegar_dol_Tick);
 			// 
-			// button2
-			// 
-			this->button2->Location = System::Drawing::Point(1159, 572);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(104, 29);
-			this->button2->TabIndex = 5;
-			this->button2->Text = L"Stworz czlowieka";
-			this->button2->UseVisualStyleBackColor = true;
-			// 
 			// timer3
 			// 
 			this->timer3->Interval = 1;
@@ -329,12 +330,12 @@ namespace Project1 {
 			// 
 			// Parter
 			// 
-			this->Parter->Interval = 1;
+			this->Parter->Interval = 5000;
 			this->Parter->Tick += gcnew System::EventHandler(this, &MyForm::Parter_Tick_1);
 			// 
 			// Masa
 			// 
-			this->Masa->Location = System::Drawing::Point(1130, 12);
+			this->Masa->Location = System::Drawing::Point(859, 512);
 			this->Masa->Name = L"Masa";
 			this->Masa->Size = System::Drawing::Size(133, 20);
 			this->Masa->TabIndex = 9;
@@ -407,12 +408,12 @@ namespace Project1 {
 			this->t04->Size = System::Drawing::Size(55, 20);
 			this->t04->TabIndex = 17;
 			// 
-			// winda
+			// winda0
 			// 
-			this->winda->Location = System::Drawing::Point(623, 563);
-			this->winda->Name = L"winda";
-			this->winda->Size = System::Drawing::Size(116, 20);
-			this->winda->TabIndex = 18;
+			this->winda0->Location = System::Drawing::Point(547, 561);
+			this->winda0->Name = L"winda0";
+			this->winda0->Size = System::Drawing::Size(25, 20);
+			this->winda0->TabIndex = 18;
 			// 
 			// w1
 			// 
@@ -781,11 +782,52 @@ namespace Project1 {
 			this->biernie->Interval = 1;
 			this->biernie->Tick += gcnew System::EventHandler(this, &MyForm::biernie_Tick);
 			// 
+			// winda1
+			// 
+			this->winda1->Location = System::Drawing::Point(578, 561);
+			this->winda1->Name = L"winda1";
+			this->winda1->Size = System::Drawing::Size(25, 20);
+			this->winda1->TabIndex = 61;
+			// 
+			// winda2
+			// 
+			this->winda2->Location = System::Drawing::Point(609, 561);
+			this->winda2->Name = L"winda2";
+			this->winda2->Size = System::Drawing::Size(25, 20);
+			this->winda2->TabIndex = 62;
+			// 
+			// winda3
+			// 
+			this->winda3->Location = System::Drawing::Point(640, 561);
+			this->winda3->Name = L"winda3";
+			this->winda3->Size = System::Drawing::Size(25, 20);
+			this->winda3->TabIndex = 63;
+			// 
+			// winda4
+			// 
+			this->winda4->Location = System::Drawing::Point(671, 561);
+			this->winda4->Name = L"winda4";
+			this->winda4->Size = System::Drawing::Size(25, 20);
+			this->winda4->TabIndex = 64;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(1159, 572);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(104, 29);
+			this->button2->TabIndex = 5;
+			this->button2->Text = L"Stworz czlowieka";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1346, 652);
+			this->Controls->Add(this->winda4);
+			this->Controls->Add(this->winda3);
+			this->Controls->Add(this->winda2);
+			this->Controls->Add(this->winda1);
 			this->Controls->Add(this->r4);
 			this->Controls->Add(this->r3);
 			this->Controls->Add(this->r2);
@@ -828,7 +870,7 @@ namespace Project1 {
 			this->Controls->Add(this->w3);
 			this->Controls->Add(this->w2);
 			this->Controls->Add(this->w1);
-			this->Controls->Add(this->winda);
+			this->Controls->Add(this->winda0);
 			this->Controls->Add(this->t04);
 			this->Controls->Add(this->t03);
 			this->Controls->Add(this->t02);
@@ -855,7 +897,7 @@ namespace Project1 {
 		}
 public:void Jazda(int gdzie_jedziemy)
 {
-	//this->Parter->Stop();
+	this->Parter->Stop();
 	if (pietro > gdzie_jedziemy) {
 		this->zegar_dol->Start();
 	}
@@ -864,18 +906,21 @@ public:void Jazda(int gdzie_jedziemy)
 	}
 	
 	if (pietro == gdzie_jedziemy) {
-	//	this->Parter->Start();
+	
 		
 		if (numer_kolejki+1 < Kolejka.size() ) {
 			postoj->Start();
 		}
-		else  biernie->Start();
+		else {
+			biernie->Start();
+			this->Parter->Start();
+		}
 	}
 }
 	public:void Dopychanie(int a, int b)
 	{
 		for (int i = numer_kolejki; i < Kolejka.size(); i++) {
-		//	if (Kolejka[i] == a) goto xd;
+			if (Kolejka[i] == a) goto xd;
 		}
 			Kolejka.push_back(a);
 			xd:
@@ -886,12 +931,20 @@ public:void Jazda(int gdzie_jedziemy)
 		xdd:
 			this->w4->Text = Convert::ToString(Kolejka.size());
 	}
+		   public:void Wsiadanie(int pietro) {
+
+
+		   }
 
 #pragma endregion
 	private: System::Void zegar_gora_Tick(System::Object^  sender, System::EventArgs^  e) {
 		this->pictureBox2->Top += -3;
 		this->ekran_pietro->Top += -3;
-		this->winda->Top += -3;
+		this->winda0->Top += -3;
+		this->winda1->Top += -3;
+		this->winda2->Top += -3;
+		this->winda3->Top += -3;
+		this->winda4->Top += -3;
 		czas++;
 		if (czas == 38) {
 			this->zegar_gora->Stop();
@@ -904,7 +957,11 @@ public:void Jazda(int gdzie_jedziemy)
 private: System::Void zegar_dol_Tick(System::Object^  sender, System::EventArgs^  e) {
 	this->pictureBox2->Top += 3;
 	this->ekran_pietro->Top += 3;
-	this->winda->Top += 3;
+	this->winda0->Top += 3;
+	this->winda1->Top += 3;
+	this->winda2->Top += 3;
+	this->winda3->Top += 3;
+	this->winda4->Top += 3;
 	czas++;
 	if (czas == 38) {
 		this->zegar_dol->Stop();
@@ -926,8 +983,12 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void Parter_Tick_1(System::Object^  sender, System::EventArgs^  e) {
 	czas++;
 	if (czas == 1) {
-		
+		Parter->Stop();
 		czas = 0;
+		numer_kolejki++;
+		Kolejka.push_back(0);
+		this->w3->Text = Convert::ToString(numer_kolejki);
+		Jazda(Kolejka[numer_kolejki]);
 	}
 
 }
@@ -1060,11 +1121,16 @@ private: System::Void Liczniki_Tick(System::Object^  sender, System::EventArgs^ 
 	this->t42->Text = Convert::ToString(ekrany[22]);
 	this->t43->Text = Convert::ToString(ekrany[23]);
 	this->r4->Text = Convert::ToString(ekrany[24]);
+	this->winda0->Text = Convert::ToString(ekrany[25]);
+	this->winda1->Text = Convert::ToString(ekrany[26]);
+	this->winda2->Text = Convert::ToString(ekrany[27]);
+	this->winda3->Text = Convert::ToString(ekrany[28]);
+	this->winda4->Text = Convert::ToString(ekrany[29]);
 	if (numer_kolejki < Kolejka.size()) {
 	if(numer_kolejki==0)   Jazda(Kolejka[numer_kolejki]);
 		}	
-	//this->w4->Text = Convert::ToString(Kolejka.size());
-	this->w3->Text = Convert::ToString(numer_kolejki);
+	this->Masa->Text = Convert::ToString(60*(ekrany[29])+ (ekrany[25]) + (ekrany[24]) + (ekrany[23]) + (ekrany[22]));
+
 }
 private: System::Void postoj_Tick(System::Object^  sender, System::EventArgs^  e) {
 	czas++;
@@ -1078,6 +1144,7 @@ private: System::Void postoj_Tick(System::Object^  sender, System::EventArgs^  e
 	
 }
 private: System::Void biernie_Tick(System::Object^  sender, System::EventArgs^  e) {
+	
 	if (Kolejka.size() - numer_kolejki > 2) {
 		biernie->Stop();
 		Jazda(Kolejka[numer_kolejki]);

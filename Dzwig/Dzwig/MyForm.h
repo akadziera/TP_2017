@@ -65,6 +65,7 @@ namespace Dzwig {
 	private: System::Windows::Forms::PictureBox^  obraz3;
 	private: System::Windows::Forms::PictureBox^  box;
 	private: System::Windows::Forms::CheckBox^  checkBox1;
+	private: System::Windows::Forms::PictureBox^  chain;
 
 
 
@@ -121,12 +122,14 @@ namespace Dzwig {
 			this->obraz3 = (gcnew System::Windows::Forms::PictureBox());
 			this->box = (gcnew System::Windows::Forms::PictureBox());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->chain = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dzwig))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->hak))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->box))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chain))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// tytul
@@ -350,7 +353,7 @@ namespace Dzwig {
 			// hak
 			// 
 			this->hak->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"hak.Image")));
-			this->hak->Location = System::Drawing::Point(395, 88);
+			this->hak->Location = System::Drawing::Point(411, 88);
 			this->hak->Name = L"hak";
 			this->hak->Size = System::Drawing::Size(31, 65);
 			this->hak->TabIndex = 18;
@@ -437,6 +440,16 @@ namespace Dzwig {
 			this->checkBox1->UseVisualStyleBackColor = true;
 			this->checkBox1->Visible = false;
 			// 
+			// chain
+			// 
+			this->chain->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"chain.Image")));
+			this->chain->Location = System::Drawing::Point(420, 88);
+			this->chain->Name = L"chain";
+			this->chain->Size = System::Drawing::Size(12, 26);
+			this->chain->TabIndex = 26;
+			this->chain->TabStop = false;
+			this->chain->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -467,6 +480,7 @@ namespace Dzwig {
 			this->Controls->Add(this->tytul);
 			this->Controls->Add(this->obraz2);
 			this->Controls->Add(this->obraz1);
+			this->Controls->Add(this->chain);
 			this->Controls->Add(this->dzwig);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"MyForm";
@@ -477,6 +491,7 @@ namespace Dzwig {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->hak))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz3))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->box))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chain))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -484,7 +499,7 @@ namespace Dzwig {
 #pragma endregion
 	private: System::Void credits_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		MessageBox::Show("Autorzy: Marek Mikulski i Maciej Kura¿", "Credits", MessageBoxButtons::OK);
+		MessageBox::Show("Kierownicy budowy: Marek Mikulski i Maciej Kura¿", "Credits", MessageBoxButtons::OK);
 
 	}
 private: System::Void DostosujDzwig_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -501,6 +516,7 @@ private: System::Void DostosujDzwig_Click(System::Object^  sender, System::Event
 	left->Visible = false;
 	right->Visible = false;
 	checkBox1->Visible = false;
+	chain->Visible = false;
 
 	dzwig->Visible = true;
 	menu->Visible = true;
@@ -549,6 +565,7 @@ private: System::Void menu_Click(System::Object^  sender, System::EventArgs^  e)
 	right->Visible = false;
 	box->Visible = false;
 	checkBox1->Visible = false;
+	chain->Visible = false;
 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -582,6 +599,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	dzwig->Visible = true;
+	chain->Visible = true;
 	hak->Visible = true;
 	menu->Visible = true;
 	up->Visible = true;
@@ -603,9 +621,10 @@ private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e)
 
 }
 private: System::Void right_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (hak->Location.X < 550)
-	hak->Location = System::Drawing::Point(hak->Location.X + 20, hak->Location.Y);
-
+	if (hak->Location.X < 550) {
+		chain->Location = System::Drawing::Point(hak->Location.X + 30, chain->Location.Y);
+		hak->Location = System::Drawing::Point(hak->Location.X + 20, hak->Location.Y);
+	}
 	if (checkBox1->Checked == false)
 	{
 		if (box->Location.Y >= hak->Location.Y  && box->Location.Y <= hak->Location.Y + 83 && (hak->Location.X >= box->Location.X && hak->Location.X <= box->Location.X + 50))
@@ -622,7 +641,7 @@ private: System::Void right_Click(System::Object^  sender, System::EventArgs^  e
 		}
 	
 	}
-	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+	else if (checkBox1->Checked == true && box->Location.Y <= 390) {
 
 		box->Location = System::Drawing::Point(box->Location.X, 415);
 		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);
@@ -630,8 +649,11 @@ private: System::Void right_Click(System::Object^  sender, System::EventArgs^  e
 	}
 }
 private: System::Void down_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (hak->Location.Y < 350)
-	hak->Location = System::Drawing::Point(hak->Location.X, hak->Location.Y + 20);
+	if (hak->Location.Y < 350) {
+		chain->Size = System::Drawing::Size(12, hak->Location.Y - 68);
+		hak->Location = System::Drawing::Point(hak->Location.X, hak->Location.Y + 20);
+	}
+	
 
 	if (checkBox1->Checked == false)
 	{
@@ -648,7 +670,7 @@ private: System::Void down_Click(System::Object^  sender, System::EventArgs^  e)
 			} while (box->Location.Y <= 350 && licznik == 1);
 		}
 	}
-	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+	else if (checkBox1->Checked == true && box->Location.Y <= 390) {
 
 		box->Location = System::Drawing::Point(box->Location.X, 415);
 		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);
@@ -674,19 +696,24 @@ private: System::Void up_Click(System::Object^  sender, System::EventArgs^  e) {
 			} while (box->Location.Y <= 350 && licznik == 1);
 		}
 	}
-	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+	else if (checkBox1->Checked == true && box->Location.Y <= 390) {
 		
 		box->Location = System::Drawing::Point(box->Location.X , 415);
 		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);
 
 	}
 
-	if (hak->Location.Y > 88)															 //RUSZANIE W GÓRÊ
+	if (hak->Location.Y > 88) {														 //RUSZANIE W GÓRÊ
+		chain->Size = System::Drawing::Size(12, hak->Location.Y - 88);
 		hak->Location = System::Drawing::Point(hak->Location.X, hak->Location.Y - 20);
+	}
 }
 private: System::Void left_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (hak->Location.X > 295)
-	hak->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y);
+	if (hak->Location.X > 295) {
+		chain->Location = System::Drawing::Point(hak->Location.X - 10, chain->Location.Y);
+		hak->Location = System::Drawing::Point(hak->Location.X - 20, hak->Location.Y);
+	}
+	
 
 	if (checkBox1->Checked == false)
 	{
@@ -703,7 +730,7 @@ private: System::Void left_Click(System::Object^  sender, System::EventArgs^  e)
 			} while (box->Location.Y <= 350 && licznik == 1);
 		}
 	}
-	else if (checkBox1->Checked == true && box->Location.Y <= 350) {
+	else if (checkBox1->Checked == true && box->Location.Y <= 390) {
 
 		box->Location = System::Drawing::Point(box->Location.X, 415);
 		MessageBox::Show("O matko! Kto da³ Ci pozwolenie na u¿ywanie dŸwigu!? nie puszcza siê skrzyñ z takiej wysokoœci", "JEB!!!", MessageBoxButtons::OK);

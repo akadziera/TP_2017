@@ -111,6 +111,7 @@ namespace WindowsFormsApp1
             pietropierwsze = 50;
            
             timer1_Tick(sender, e);
+            Invalidate();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -118,12 +119,14 @@ namespace WindowsFormsApp1
             pietropierwsze = 160;
            
             timer1_Tick(sender, e);
+            Invalidate();
 
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
             pietropierwsze = 300;
+            Invalidate();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -148,14 +151,11 @@ namespace WindowsFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
             passenger1.Enqueue(i);
- 
+            Invalidate();
+
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-          
-        }
+     
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -164,7 +164,7 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (lift.Count() != 0)
+            if (lift.Count() != 0 && pietropierwsze == 160)
             {
                 passenger1.Enqueue(i); 
                 lift.Dequeue();
@@ -174,17 +174,17 @@ namespace WindowsFormsApp1
             if (lift.Count() == 0)
             {
                 System.Threading.Thread.Sleep(5000);
-                pietropierwsze = 200;
-                pietrodrugie = 190;
+                pietropierwsze = 300;
                 timer1_Tick(sender, e);
 
             }
+            Invalidate();
 
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (lift.Count() < 8) {
+            if (lift.Count() < 8 && pietropierwsze == 160) {
                 passenger1.Dequeue();
                 lift.Enqueue(m);
                 m = lift.Count();
@@ -192,10 +192,11 @@ namespace WindowsFormsApp1
                 System.Windows.Forms.MessageBox.Show(weight.ToString());
                 
             }
-            if (lift.Count() >= 8)
+            if (lift.Count() >= 8 && pietropierwsze == 160)
             {
                 System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
             }
+            Invalidate();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -206,11 +207,12 @@ namespace WindowsFormsApp1
         private void button6_Click(object sender, EventArgs e)
         {
             passengerground.Enqueue(ground);
+            Invalidate();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (lift.Count() < 8)
+            if (lift.Count() < 8 && pietropierwsze == 300)
             {
                 passengerground.Dequeue();
                 lift.Enqueue(m);
@@ -219,29 +221,24 @@ namespace WindowsFormsApp1
                 System.Windows.Forms.MessageBox.Show(weight.ToString());
                
             }
-            if (lift.Count() >= 8)
+            if (lift.Count() >= 8 && pietropierwsze == 300)
             {
                 System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
             }
+            Invalidate();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (lift.Count() != 0)
+            if (lift.Count() != 0 && pietropierwsze==300)
             {
                 passengerground.Enqueue(ground);
                 lift.Dequeue();
                 ground = passengerground.Count();
                 System.Windows.Forms.MessageBox.Show(ground.ToString());
             }
-            if (lift.Count() == 0)
-            {
-                System.Threading.Thread.Sleep(5000);
-                pietropierwsze = 200;
-                pietrodrugie = 190;
-                timer1_Tick(sender, e);
-
-            }
+         
+            Invalidate();
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -251,7 +248,7 @@ namespace WindowsFormsApp1
 
         private void button10_Click(object sender, EventArgs e)
         {
-            if (lift.Count() < 8)
+            if (lift.Count() < 8 && pietropierwsze == 50)
             {
                 passenger2.Dequeue();
                 lift.Enqueue(m);
@@ -259,15 +256,16 @@ namespace WindowsFormsApp1
                 weight = m * normalweight;
                 System.Windows.Forms.MessageBox.Show(weight.ToString());
             }
-            if (lift.Count() >= 8)
+            if (lift.Count() >= 8 && pietropierwsze == 50)
             {
                 System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
             }
+            Invalidate();
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if (lift.Count() != 0)
+            if (lift.Count() != 0 && pietropierwsze==50)
             {
                 passenger2.Enqueue(j);
                 lift.Dequeue();
@@ -277,11 +275,11 @@ namespace WindowsFormsApp1
             if (lift.Count() == 0)
             {
                 System.Threading.Thread.Sleep(5000);
-                pietropierwsze = 200;
-                pietrodrugie = 190;
+                pietropierwsze = 300;
                 timer1_Tick(sender, e);
 
             }
+            Invalidate();
         }
 
         private void label4_Click(object sender, EventArgs e)

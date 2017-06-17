@@ -65,7 +65,7 @@ namespace WindowsFormsApp1
            count = passenger2.Count();
             for (int c=0; c<count; c++)
                 {                
-                    e.Graphics.DrawRectangle(myPen, 50-(15*c), 50, 10, 10);
+                    e.Graphics.DrawRectangle(myPen, 140-(15*c), 30, 10, 10);
                 }
             ccount = lift.Count();
             for(int j = 0; j < ccount; j++)
@@ -76,7 +76,7 @@ namespace WindowsFormsApp1
             c1ount = passenger1.Count();
             for (int c = 0; c < c1ount; c++)
                     {
-                        e.Graphics.DrawRectangle(myPen, 50 - (15 * c), 50, 10, 10);
+                        e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 165, 10, 10);
                     }
               
                 for (int j = 0; j < ccount; j++)
@@ -86,7 +86,7 @@ namespace WindowsFormsApp1
             cgount = passengerground.Count();
             for (int c = 0; c < cgount; c++)
                 {
-                    e.Graphics.DrawRectangle(myPen, 50 - (15 * c), 50, 10, 10);
+                    e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 300, 10, 10);
                 }
             
             for (int j = 0; j < ccount; j++)
@@ -97,7 +97,10 @@ namespace WindowsFormsApp1
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (ccount!=0)
+            pietropierwsze = 200;
+            pietrodrugie = 190;
+            timer1_Tick(sender, e);
+            /*   if (ccount!=0)
             {
                 pietropierwsze = x;
 
@@ -108,12 +111,12 @@ namespace WindowsFormsApp1
                 pietropierwsze = 200;
                 pietrodrugie = 190;
                 timer1_Tick(sender, e);
-            }
+            }*/
 
         }
-       
 
-        private void timer1_Tick(object sender, EventArgs e)
+
+            private void timer1_Tick(object sender, EventArgs e)
         {
             if (z<pietrodrugie && y < pietropierwsze)
             {
@@ -220,9 +223,46 @@ namespace WindowsFormsApp1
             {
                 passengerground.Enqueue(ground);
                 lift.Dequeue();
-                i = passengerground.Count();
-                System.Windows.Forms.MessageBox.Show(i.ToString());
+                ground = passengerground.Count();
+                System.Windows.Forms.MessageBox.Show(ground.ToString());
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            passenger2.Enqueue(j);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (lift.Count() < 8)
+            {
+                passenger2.Dequeue();
+                lift.Enqueue(m);
+                m = lift.Count();
+                weight = m * normalweight;
+                System.Windows.Forms.MessageBox.Show(weight.ToString());
+            }
+            if (lift.Count() >= 8)
+            {
+                System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (lift.Count() != 0)
+            {
+                passenger2.Enqueue(j);
+                lift.Dequeue();
+                j = passenger2.Count();
+                System.Windows.Forms.MessageBox.Show(j.ToString());
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

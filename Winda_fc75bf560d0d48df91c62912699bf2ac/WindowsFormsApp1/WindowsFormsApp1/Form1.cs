@@ -21,12 +21,11 @@ namespace WindowsFormsApp1
         private int y;
         private int z;
         private int m;
-
-        private string mytext;
+        private int count;
+        private int ccount;
         private int pietropierwsze;
         private int pietrodrugie;
         private int normalweight = 70;
-        private int maxweight = 600;
         private int weight;
         public struct Passenger
         {
@@ -54,11 +53,21 @@ namespace WindowsFormsApp1
        
             Pen myPen = new Pen(System.Drawing.Color.Black, 5);
             e.Graphics.DrawRectangle(myPen, x, y, 100, 100);
+           count = passenger1.Count();
+            for (int c=0; c<count; c++)
+            {                
+                e.Graphics.DrawRectangle(myPen, 50-(15*c), 50, 10, 10);
+            }
+            ccount = lift.Count();
+            for(int j = 0; j < ccount; j++)
+            {
+                e.Graphics.DrawRectangle(myPen, (10+ j*10) + x, (80)+y, 10, 10);
+            }
 
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (i == 0)
+            if (ccount!=0)
             {
                 pietropierwsze = x;
 
@@ -109,7 +118,7 @@ namespace WindowsFormsApp1
         private void button3_Click(object sender, EventArgs e)
         {
             passenger1.Enqueue(i);
-            
+ 
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -125,7 +134,13 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.MessageBox.Show(m.ToString());
+            if (lift.Count() != 0)
+            {
+                passenger1.Enqueue(i); 
+                lift.Dequeue();
+                i = passenger1.Count();
+                System.Windows.Forms.MessageBox.Show(i.ToString());
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -137,7 +152,10 @@ namespace WindowsFormsApp1
                 weight = m * normalweight;
                 System.Windows.Forms.MessageBox.Show(weight.ToString());
             }
-
+            if (lift.Count() >= 8)
+            {
+                System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
+            }
         }
     }
 }

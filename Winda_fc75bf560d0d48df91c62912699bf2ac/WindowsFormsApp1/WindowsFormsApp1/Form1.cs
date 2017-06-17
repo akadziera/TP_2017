@@ -47,9 +47,10 @@ namespace WindowsFormsApp1
             InitializeComponent();
             z = 50;
             x = 300;
-            y = 50;
+            y = 300;
             i = 0;
             j = 0;
+            pietropierwsze = 300;
             ground = 0;
             m= 0;
             count = 0;
@@ -58,95 +59,91 @@ namespace WindowsFormsApp1
             c1ount = 0;
         }
 
-        private void Form1_View(object sender, PaintEventArgs e) {
-       
+        private void Form1_View(object sender, PaintEventArgs e)
+        {
+
             Pen myPen = new Pen(System.Drawing.Color.Black, 5);
             e.Graphics.DrawRectangle(myPen, x, y, 100, 100);
-           count = passenger2.Count();
-            for (int c=0; c<count; c++)
-                {                
-                    e.Graphics.DrawRectangle(myPen, 140-(15*c), 30, 10, 10);
-                }
+            count = passenger2.Count();
+            for (int c = 0; c < count; c++)
+            {
+                e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 30, 10, 10);
+            }
             ccount = lift.Count();
-            for(int j = 0; j < ccount; j++)
-                {
-                    e.Graphics.DrawRectangle(myPen, (10+ j*10) + x, (80)+y, 10, 10);
+            for (int j = 0; j < ccount; j++)
+            {
+                
+                    e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
+                
+             
                 }
 
             c1ount = passenger1.Count();
             for (int c = 0; c < c1ount; c++)
-                    {
-                        e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 165, 10, 10);
-                    }
-              
-                for (int j = 0; j < ccount; j++)
-                    {
-                        e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
-                    }
+            {
+                e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 165, 10, 10);
+            }
+
+            for (int j = 0; j < ccount; j++)
+            {
+                
+                    e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
+                
+                }
             cgount = passengerground.Count();
             for (int c = 0; c < cgount; c++)
-                {
-                    e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 300, 10, 10);
-                }
-            
+            {
+                e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 300, 10, 10);
+            }
+
             for (int j = 0; j < ccount; j++)
-                {
+            {
+              
+                
                     e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
+                
                 }
 
+           
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            pietropierwsze = 50;
+           
+            timer1_Tick(sender, e);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            pietropierwsze = 200;
-            pietrodrugie = 190;
+            pietropierwsze = 160;
+           
             timer1_Tick(sender, e);
-            /*   if (ccount!=0)
-            {
-                pietropierwsze = x;
-
-            }
-            else
-            {  
-                System.Threading.Thread.Sleep(5000);
-                pietropierwsze = 200;
-                pietrodrugie = 190;
-                timer1_Tick(sender, e);
-            }*/
 
         }
 
-
-            private void timer1_Tick(object sender, EventArgs e)
+        private void button12_Click(object sender, EventArgs e)
         {
-            if (z<pietrodrugie && y < pietropierwsze)
+            pietropierwsze = 300;
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (y < pietropierwsze)
             {
                 y += 10;
-                z += 10;
+                
             }
-            else if (z==pietrodrugie && y>=100 && y<=pietropierwsze)
+            if (y>pietropierwsze)
             {   
                 y=y-10;
-                if (y == 100)
-                {
-                    z = 300;
-                }
+             
             }
 
             Invalidate();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            pietropierwsze = 400;
-            pietrodrugie = 390;
-            timer1_Tick(sender, e);
-        }
+       
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-           // Image myImg = Image.FromFile(@"1.jpg");
-            
-        }
+       
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -174,6 +171,15 @@ namespace WindowsFormsApp1
                 i = passenger1.Count();
                 System.Windows.Forms.MessageBox.Show(i.ToString());
             }
+            if (lift.Count() == 0)
+            {
+                System.Threading.Thread.Sleep(5000);
+                pietropierwsze = 200;
+                pietrodrugie = 190;
+                timer1_Tick(sender, e);
+
+            }
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -184,6 +190,7 @@ namespace WindowsFormsApp1
                 m = lift.Count();
                 weight = m * normalweight;
                 System.Windows.Forms.MessageBox.Show(weight.ToString());
+                
             }
             if (lift.Count() >= 8)
             {
@@ -210,6 +217,7 @@ namespace WindowsFormsApp1
                 m = lift.Count();
                 weight = m * normalweight;
                 System.Windows.Forms.MessageBox.Show(weight.ToString());
+               
             }
             if (lift.Count() >= 8)
             {
@@ -225,6 +233,14 @@ namespace WindowsFormsApp1
                 lift.Dequeue();
                 ground = passengerground.Count();
                 System.Windows.Forms.MessageBox.Show(ground.ToString());
+            }
+            if (lift.Count() == 0)
+            {
+                System.Threading.Thread.Sleep(5000);
+                pietropierwsze = 200;
+                pietrodrugie = 190;
+                timer1_Tick(sender, e);
+
             }
         }
 
@@ -258,11 +274,21 @@ namespace WindowsFormsApp1
                 j = passenger2.Count();
                 System.Windows.Forms.MessageBox.Show(j.ToString());
             }
+            if (lift.Count() == 0)
+            {
+                System.Threading.Thread.Sleep(5000);
+                pietropierwsze = 200;
+                pietrodrugie = 190;
+                timer1_Tick(sender, e);
+
+            }
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
+
+      
     }
 }

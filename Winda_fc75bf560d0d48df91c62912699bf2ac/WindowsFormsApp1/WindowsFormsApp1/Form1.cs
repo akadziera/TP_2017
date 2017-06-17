@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
         private int cgount;
         private int ground;
         private int pietropierwsze;
-        private int pietrodrugie;
+        
         private int normalweight = 70;
         private int weight;
         public struct Passenger
@@ -50,6 +50,7 @@ namespace WindowsFormsApp1
             y = 300;
             i = 0;
             j = 0;
+            weight = 0;
             pietropierwsze = 300;
             ground = 0;
             m= 0;
@@ -61,6 +62,7 @@ namespace WindowsFormsApp1
 
         private void Form1_View(object sender, PaintEventArgs e)
         {
+            
 
             Pen myPen = new Pen(System.Drawing.Color.Black, 5);
             e.Graphics.DrawRectangle(myPen, x, y, 100, 100);
@@ -169,7 +171,10 @@ namespace WindowsFormsApp1
                 passenger1.Enqueue(i); 
                 lift.Dequeue();
                 i = passenger1.Count();
-                System.Windows.Forms.MessageBox.Show(i.ToString());
+                weight = normalweight * lift.Count();
+                string text = weight.ToString();
+                textBox1.Text = text;
+
             }
             if (lift.Count() == 0)
             {
@@ -184,17 +189,19 @@ namespace WindowsFormsApp1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (lift.Count() < 8 && pietropierwsze == 160) {
+            if (passenger1.Count() != 0 && lift.Count() < 8 && pietropierwsze == 160) {
                 passenger1.Dequeue();
                 lift.Enqueue(m);
                 m = lift.Count();
                 weight = m * normalweight;
-                System.Windows.Forms.MessageBox.Show(weight.ToString());
-                
+                string text = weight.ToString();
+                textBox1.Text = text;
+
+
             }
-            if (lift.Count() >= 8 && pietropierwsze == 160)
+            if (passenger1.Count() != 0 && lift.Count() >= 8 && pietropierwsze == 160)
             {
-                System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
+                System.Windows.Forms.MessageBox.Show("No more passengers can enter the lift");
             }
             Invalidate();
         }
@@ -212,18 +219,20 @@ namespace WindowsFormsApp1
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (lift.Count() < 8 && pietropierwsze == 300)
+            if (passengerground.Count() != 0 && lift.Count() < 8 && pietropierwsze == 300)
             {
                 passengerground.Dequeue();
                 lift.Enqueue(m);
                 m = lift.Count();
                 weight = m * normalweight;
-                System.Windows.Forms.MessageBox.Show(weight.ToString());
-               
+                string text = weight.ToString();
+                textBox1.Text = text;
+
+
             }
-            if (lift.Count() >= 8 && pietropierwsze == 300)
+            if (passengerground.Count() != 0 && lift.Count() >= 8 && pietropierwsze == 300)
             {
-                System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
+                System.Windows.Forms.MessageBox.Show("No more passengers can enter the lift");
             }
             Invalidate();
         }
@@ -235,7 +244,10 @@ namespace WindowsFormsApp1
                 passengerground.Enqueue(ground);
                 lift.Dequeue();
                 ground = passengerground.Count();
-                System.Windows.Forms.MessageBox.Show(ground.ToString());
+                weight = normalweight * lift.Count();
+                string text = weight.ToString();
+                textBox1.Text = text;
+
             }
          
             Invalidate();
@@ -248,17 +260,19 @@ namespace WindowsFormsApp1
 
         private void button10_Click(object sender, EventArgs e)
         {
-            if (lift.Count() < 8 && pietropierwsze == 50)
+            if (passenger2.Count()!=0 && lift.Count() < 8 && pietropierwsze == 50)
             {
                 passenger2.Dequeue();
                 lift.Enqueue(m);
                 m = lift.Count();
                 weight = m * normalweight;
-                System.Windows.Forms.MessageBox.Show(weight.ToString());
+                string text = weight.ToString();
+                textBox1.Text = text;
+
             }
-            if (lift.Count() >= 8 && pietropierwsze == 50)
+            if (passenger2.Count() != 0 && lift.Count() >= 8 && pietropierwsze == 50)
             {
-                System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
+                System.Windows.Forms.MessageBox.Show("No more passengers can enter the lift");
             }
             Invalidate();
         }
@@ -270,7 +284,10 @@ namespace WindowsFormsApp1
                 passenger2.Enqueue(j);
                 lift.Dequeue();
                 j = passenger2.Count();
-                System.Windows.Forms.MessageBox.Show(j.ToString());
+                weight = normalweight * lift.Count();
+                string text = weight.ToString();
+                textBox1.Text = text;
+
             }
             if (lift.Count() == 0)
             {
@@ -287,6 +304,10 @@ namespace WindowsFormsApp1
 
         }
 
-      
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+             
+            
+        }
     }
 }

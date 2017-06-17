@@ -26,12 +26,9 @@ namespace Project1 {
 		static
 		int czas = 0;
 		int pietro = 0;
-		int czlek = 0;
 		int gdzie_jedziemy = 0;
 		int waga = 0;
 		int numer_kolejki = 0;
-		int przesuniecie = 0;
-		int przerzutka = 0;
 		int ciezar = 0;
 
 
@@ -858,7 +855,6 @@ private: System::Windows::Forms::Label^  label53;
 			this->label1->Size = System::Drawing::Size(119, 13);
 			this->label1->TabIndex = 65;
 			this->label1->Text = L"Osoby jadace na piêtro:";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -1490,41 +1486,54 @@ private: System::Windows::Forms::Label^  label53;
 			if (numer_kolejki + 1 < Kolejka.size()) {
 				postoj->Start();
 			}
-			else {			
-				biernie->Start();
-				this->Parter->Start();
+			else {	
+				for (int m = 0; m < 5; m++) {
+					if (ekrany[25 + m] != 0) Kolejka.push_back(m);
+				}
+				if (numer_kolejki + 1 < Kolejka.size()) {
+					postoj->Start();
+				}
+				else{
+					biernie->Start();
+					this->Parter->Start();
+				}
 			}
 		}
 	}
-	public:void Dopychanie(int a, int b)
-	{
+	public:void Dopychanie(int a, int b) {
+		int t1 = 0;
 		for (int i = numer_kolejki; i < Kolejka.size(); i++) {
-			if (Kolejka[i] == a) goto xd;
+			if (Kolejka[i] == a) { goto xd; }
 		}
 		Kolejka.push_back(a);
-	xd:
+				xd:
 		for (int i = numer_kolejki; i < Kolejka.size(); i++) {
-			//	if (Kolejka[i] == b) goto xdd;
+			if (t1 == 0) {
+				if (Kolejka[i] == a)  t1 = 1;
+			}
+			if (t1 == 1) {
+				if (Kolejka[i] == b)  t1 = 2;
+			}
 		}
-		Kolejka.push_back(b);
-	//xdd:
+		if(t1<2)  Kolejka.push_back(b);
+		
+		
+		
+		
 	}
+	
 	public:void Wsiadanie(int pietro) {
-	//	int a = 0;
-	//	if (ekrany[25 + pietro] > ekrany[4 + (5 * pietro)]) a = ekrany[25 + pietro];
-	//	else a = ekrany[4 + (5 * pietro)];
-			
-	//	for (int i = 0; i <a; i++) {
-		for (int i = 0; i < 15; i++) {
+		int przerzutka = 0;
+		bool omg = 0;
+		for (int i = 0; i < 30; i++) {
 			if (ekrany[25 + pietro] != 0) {
 				ekrany[25 + pietro]--;
 				ekrany[30 + pietro]++;
 				ciezar = ciezar - 60;
 				
 			}
-
-			if (ciezar > 700) continue;
-
+			if (ciezar > 650)   break;
+						
 			if (przerzutka == 4) continue;
 			
 			if (ekrany[(5 * pietro) + przerzutka] != 0)
@@ -1549,8 +1558,8 @@ private: System::Windows::Forms::Label^  label53;
 				
 			
 			else przerzutka++;
-		}
-		przerzutka = 0;
+			
+		} 
 	}
 	
 #pragma endregion
@@ -1617,11 +1626,31 @@ private: System::Void Parter_Tick_1(System::Object^  sender, System::EventArgs^ 
 
 }
 
-private: System::Void p01_Click(System::Object^  sender, System::EventArgs^  e) {
-		ekrany[0]++;
-		Dopychanie(0, 1);
-		
+private: System::Void postoj_Tick(System::Object^  sender, System::EventArgs^  e) {
+	czas++;
+	if (czas == 2) {
+		this->postoj->Stop();
+		czas = 0;
+		numer_kolejki++;
+		Jazda(Kolejka[numer_kolejki]);
 	}
+	
+}
+private: System::Void biernie_Tick(System::Object^  sender, System::EventArgs^  e) {
+	
+	if (Kolejka.size() - numer_kolejki > 1) {
+		biernie->Stop();
+		Wsiadanie(pietro);
+		Jazda(Kolejka[numer_kolejki]);
+	}
+}
+
+
+private: System::Void p01_Click(System::Object^  sender, System::EventArgs^  e) {
+	ekrany[0]++;
+	Dopychanie(0, 1);
+
+}
 private: System::Void p02_Click_1(System::Object^  sender, System::EventArgs^  e) {
 	ekrany[1]++;
 	Dopychanie(0, 2);
@@ -1698,33 +1727,33 @@ private: System::Void p43_Click(System::Object^  sender, System::EventArgs^  e) 
 	ekrany[23]++;
 	Dopychanie(4, 3);
 }
-		 
+
 private: System::Void Liczniki_Tick(System::Object^  sender, System::EventArgs^  e) {
 	this->t01->Text = Convert::ToString(ekrany[0]);
 	this->t02->Text = Convert::ToString(ekrany[1]);
 	this->t03->Text = Convert::ToString(ekrany[2]);
 	this->t04->Text = Convert::ToString(ekrany[3]);
-					this->r0->Text = Convert::ToString(ekrany[0]+ ekrany[1] + ekrany[2] + ekrany[3] );
+	this->r0->Text = Convert::ToString(ekrany[0] + ekrany[1] + ekrany[2] + ekrany[3]);
 	this->t10->Text = Convert::ToString(ekrany[5]);
 	this->t12->Text = Convert::ToString(ekrany[6]);
 	this->t13->Text = Convert::ToString(ekrany[7]);
 	this->t14->Text = Convert::ToString(ekrany[8]);
-					this->r1->Text = Convert::ToString(ekrany[5] + ekrany[6] + ekrany[7] + ekrany[8]);
+	this->r1->Text = Convert::ToString(ekrany[5] + ekrany[6] + ekrany[7] + ekrany[8]);
 	this->t20->Text = Convert::ToString(ekrany[10]);
 	this->t21->Text = Convert::ToString(ekrany[11]);
 	this->t23->Text = Convert::ToString(ekrany[12]);
 	this->t24->Text = Convert::ToString(ekrany[13]);
-					this->r2->Text = Convert::ToString(ekrany[10] + ekrany[11] + ekrany[12] + ekrany[13]);
+	this->r2->Text = Convert::ToString(ekrany[10] + ekrany[11] + ekrany[12] + ekrany[13]);
 	this->t30->Text = Convert::ToString(ekrany[15]);
 	this->t31->Text = Convert::ToString(ekrany[16]);
 	this->t32->Text = Convert::ToString(ekrany[17]);
 	this->t34->Text = Convert::ToString(ekrany[18]);
-					this->r3->Text = Convert::ToString(ekrany[15] + ekrany[16] + ekrany[17] + ekrany[18]);
+	this->r3->Text = Convert::ToString(ekrany[15] + ekrany[16] + ekrany[17] + ekrany[18]);
 	this->t40->Text = Convert::ToString(ekrany[20]);
 	this->t41->Text = Convert::ToString(ekrany[21]);
 	this->t42->Text = Convert::ToString(ekrany[22]);
 	this->t43->Text = Convert::ToString(ekrany[23]);
-					this->r4->Text = Convert::ToString(ekrany[20] + ekrany[21] + ekrany[22] + ekrany[23]);
+	this->r4->Text = Convert::ToString(ekrany[20] + ekrany[21] + ekrany[22] + ekrany[23]);
 	this->winda0->Text = Convert::ToString(ekrany[25]);
 	this->winda1->Text = Convert::ToString(ekrany[26]);
 	this->winda2->Text = Convert::ToString(ekrany[27]);
@@ -1737,31 +1766,10 @@ private: System::Void Liczniki_Tick(System::Object^  sender, System::EventArgs^ 
 	this->w4->Text = Convert::ToString(ekrany[34]);
 
 	if (numer_kolejki < Kolejka.size()) {
-	if(numer_kolejki==0)   Jazda(Kolejka[numer_kolejki]);
-		}	
+		if (numer_kolejki == 0)   Jazda(Kolejka[numer_kolejki]);
+	}
 	this->Masa->Text = Convert::ToString(ciezar);
 
-}
-private: System::Void postoj_Tick(System::Object^  sender, System::EventArgs^  e) {
-	czas++;
-	if (czas == 2) {
-		this->postoj->Stop();
-		czas = 0;
-		numer_kolejki++;
-		Jazda(Kolejka[numer_kolejki]);
-	}
-	
-}
-private: System::Void biernie_Tick(System::Object^  sender, System::EventArgs^  e) {
-	
-	if (Kolejka.size() - numer_kolejki > 1) {
-		biernie->Stop();
-		Wsiadanie(pietro);
-		Jazda(Kolejka[numer_kolejki]);
-	}
-}
-
-private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

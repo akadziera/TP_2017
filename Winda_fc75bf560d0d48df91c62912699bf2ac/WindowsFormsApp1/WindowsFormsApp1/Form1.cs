@@ -23,6 +23,9 @@ namespace WindowsFormsApp1
         private int m;
         private int count;
         private int ccount;
+        private int c1ount;
+        private int cgount;
+        private int ground;
         private int pietropierwsze;
         private int pietrodrugie;
         private int normalweight = 70;
@@ -34,6 +37,7 @@ namespace WindowsFormsApp1
 
         }
 
+        Queue<int> passengerground = new Queue<int>();
         Queue<int> passenger1 = new Queue<int>();
         Queue<int> passenger2 = new Queue<int>();
         Queue<int> lift = new Queue<int>();
@@ -46,23 +50,49 @@ namespace WindowsFormsApp1
             y = 50;
             i = 0;
             j = 0;
+            ground = 0;
             m= 0;
+            count = 0;
+            ccount = 0;
+            cgount = 0;
+            c1ount = 0;
         }
 
         private void Form1_View(object sender, PaintEventArgs e) {
        
             Pen myPen = new Pen(System.Drawing.Color.Black, 5);
             e.Graphics.DrawRectangle(myPen, x, y, 100, 100);
-           count = passenger1.Count();
+           count = passenger2.Count();
             for (int c=0; c<count; c++)
-            {                
-                e.Graphics.DrawRectangle(myPen, 50-(15*c), 50, 10, 10);
-            }
+                {                
+                    e.Graphics.DrawRectangle(myPen, 50-(15*c), 50, 10, 10);
+                }
             ccount = lift.Count();
             for(int j = 0; j < ccount; j++)
-            {
-                e.Graphics.DrawRectangle(myPen, (10+ j*10) + x, (80)+y, 10, 10);
-            }
+                {
+                    e.Graphics.DrawRectangle(myPen, (10+ j*10) + x, (80)+y, 10, 10);
+                }
+
+            c1ount = passenger1.Count();
+            for (int c = 0; c < c1ount; c++)
+                    {
+                        e.Graphics.DrawRectangle(myPen, 50 - (15 * c), 50, 10, 10);
+                    }
+              
+                for (int j = 0; j < ccount; j++)
+                    {
+                        e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
+                    }
+            cgount = passengerground.Count();
+            for (int c = 0; c < cgount; c++)
+                {
+                    e.Graphics.DrawRectangle(myPen, 50 - (15 * c), 50, 10, 10);
+                }
+            
+            for (int j = 0; j < ccount; j++)
+                {
+                    e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
+                }
 
         }
         private void button1_Click(object sender, EventArgs e)
@@ -155,6 +185,43 @@ namespace WindowsFormsApp1
             if (lift.Count() >= 8)
             {
                 System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            passengerground.Enqueue(ground);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (lift.Count() < 8)
+            {
+                passengerground.Dequeue();
+                lift.Enqueue(m);
+                m = lift.Count();
+                weight = m * normalweight;
+                System.Windows.Forms.MessageBox.Show(weight.ToString());
+            }
+            if (lift.Count() >= 8)
+            {
+                System.Windows.Forms.MessageBox.Show("No more passengers can be inside the lift");
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            if (lift.Count() != 0)
+            {
+                passengerground.Enqueue(ground);
+                lift.Dequeue();
+                i = passengerground.Count();
+                System.Windows.Forms.MessageBox.Show(i.ToString());
             }
         }
     }

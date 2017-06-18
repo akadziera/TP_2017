@@ -1,20 +1,23 @@
-# TP_2017
+Aby zacząć projekt-winda, należy:
 
-## Tworzymy własny projekt
+1. W VisualStudio w okiencu nowy projekt wybrać VisualC++ -> CLR -> CLR Empty Project
+2. Wejść we właściwości stworzonego projektu
 
-* Zaczynamy od zrobienia forka głównego projektu
-* Każdy projekt powinien zostać umieszczony w osobnym folderze nazwaFolderu_ID (ID zostanie przydzielone do kazdej grupy projektowej)
-* Po zakończeniu projektu robimy Pull Request do brancha develop
+3. W okienu wybrać Linker -> System -> SubSystem = Windows
 
-## Co folder projektowy musi posiadać
+4. W Linker -> Advanced -> Entry Point = Main
 
-* Źródła programu (C, C++)
-* Dokumentację (README.md) - kilka zdań na temat samego projektu + opis jak zbudować kod
+5. Kliknąć zastosuj
 
-## Uwaga 
-* Nie umieszczamy w repozyterium plikow binarnych! 
 
-## Linki
 
-* Kurs dotyczący GIT - https://www.atlassian.com/git/tutorials 
+Symulator uwzględnia możliwość zatrzymywania się na poszczególnych piętrach oraz przywołania winda za pomocą przycisku na interfejsie użytkownika.
 
+Program  kolejkuje  wywołania.
+
+Użytkownik ma możliwość zdefiniowania  ilości osób wchodzących i wychodzących na poszczególnych piętrach.
+Średnia waga pasażera to 70kg.
+
+Program prezentuje na interfejsie użytkownika masę przewożonych pasażerów.
+
+Mechanizm sprawdza czy winda po zatrzymaniu się na określonym piętrze jest pusta. Jeśli tak odliczaj 5 sek. i zjeżdża windą na parter.

@@ -1,3 +1,6 @@
+Anna Kądziera 165413 AiR 1
+Sabina Marocka 165563 AiR 1
+
 Projekt Winda umozliwia symulacje windy wraz z przemieszczaniem sie pasazerow na dowolne pietro.
 -Pasazer
 Umozliwia dodanie nowych pasazerow na danym pietrze.

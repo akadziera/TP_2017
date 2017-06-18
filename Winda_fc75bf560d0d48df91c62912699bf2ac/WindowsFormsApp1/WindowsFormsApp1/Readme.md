@@ -3,22 +3,22 @@ Projekt Winda umozliwia symulacje windy wraz z przemieszczaniem sie pasazerow na
 Umozliwia dodanie nowych pasazerow na danym pietrze.
 Jezeli pasazer znajduje sie na innym pietrze niz winda w danym momencie, to nie moze on wejsc do windy dopoki nie pojawi sie ona na danym pietrze.
 
--Do windy
+- Do windy
 Umozliwia przejscie pasazera z kolejki do windy i poruszanie sie winda na dowolne pietro.
 
--Z windy
+- Z windy
 Umozliwia wyjscie pasazera z windy na dowolnym pietrze, ale zgodnym z pietrem na ktorym znajduje sie winda.\
 
--Usun
+- Usun
 Usuwa pasazera z kolejki na danym pietrze.
 
--Parter 
+- Parter 
 Przemieszcza winde wraz z pasazerami na parter.
 
--I pietro 
+- I pietro 
 Przemieszcza winde wraz z pasazerami na 1 poziom.
 
--2 pietro 
+- 2 pietro 
 Przemieszcza winde wraz z pasazerami na 2 poziom.
 
 - Textbox Masa pasazerow 

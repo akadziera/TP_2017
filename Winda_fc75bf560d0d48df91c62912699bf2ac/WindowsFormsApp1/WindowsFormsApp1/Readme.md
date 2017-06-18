@@ -28,3 +28,14 @@ Winda po wyjsiu ostatniego pasazera na danym pietrze, gdy staje sie pusta, po 5 
 Gdy przeladujemy winde, ktora ma udzwig 600 kg, a kazdy pasazer wazy 70 kg (czyli maksymalnie wejdzie do niej 8 osob jednoczesnie),
 to pojawia nam sie okienko dialogowe z informacja, ze wiecej pasazerow nie moze wejsc do windy.
 
+Projekt bazuje na 4 kolejkach. Po jednej na kazde pietro i jednej kolejki dla windy. 
+Przy wsiadaniu pasazera do windy na danym pietrze, zostaje on usuniety z kolejki pietra i dodany do kolejki windy. 
+Przy wysiadaniu pasazera z windy na danym pietrze, zostaje on usuniety z kolejki windy i dodany do kolejki danego pietra.
+
+Winda i pasazerowie poruszaja sie zgodnie z timerem, a ich cel jest wyznaczany przez wartosc y okreslona dla kazdego pietra.
+Gdy usuniemy ostatniego pasazera na danym pietrze, to warunek ustala windzie przeczekiwanie 5 sekund i zjezdzanie na parter.
+
+Kazdemu pasazerowi przypisana jest ta sama waga (70kg), więc nigdy nie osiagniemy max. 600 kg udzwigu windy. 
+Udzwig sprawdzany jest przez sprawdzenie liczby wyrazow w kolejce windy i pomnozenie przez wage pasazera.
+
+

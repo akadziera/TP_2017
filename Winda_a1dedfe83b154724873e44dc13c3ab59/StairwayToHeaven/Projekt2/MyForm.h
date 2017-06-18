@@ -11,7 +11,11 @@ namespace Projekt2 {
 	std::vector <int> floorPassengers;
 	std::vector< std::vector<int> > floor;
 	int i = 0;
-	bool elevator_stop = false;
+	int s = 0;
+	int weight = 0;
+	int u1 = 0, u2 = 0, u3 = 0, u4 = 0, u5 = 0;
+	int v = 0;
+	int p = 0;
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -26,16 +30,15 @@ namespace Projekt2 {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		//
-		String^ lvl1 = "1";
-		String^ lvl2 = "2";
-		String^ lvl3 = "3";
-		String^ lvl4 = "4";
-		String^ lvl5 = "5";
 		String^ queue1;
 		String^ queue2;
 		String^ queue3;
 		String^ queue4;
 		String^ queue5;
+		String^ person;
+		String^ weightString;
+		String^ passengersElevator;
+		String^ passengerElevator;
 
 	private: System::Windows::Forms::Button^  button3_1;
 	private: System::Windows::Forms::Button^  button3_2;
@@ -63,6 +66,8 @@ namespace Projekt2 {
 	private: System::Windows::Forms::Label^  level5;
 	private: System::Windows::Forms::Label^  winda;
 	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::Label^  weightFigure;
+	private: System::Windows::Forms::Label^  weightSum;
 	private: System::Windows::Forms::Label^  escalator;
 
 	public:
@@ -90,25 +95,11 @@ namespace Projekt2 {
 	private: System::Windows::Forms::PictureBox^  pictureBox2;
 
 	private: System::Windows::Forms::Timer^  timer1;
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Label^  level1;
 	private: System::ComponentModel::IContainer^  components;
-
-
 	protected:
-
+	protected
 	protected:
-
-	protected:
-
 
 	private:
 		/// <summary>
@@ -155,6 +146,8 @@ namespace Projekt2 {
 			this->winda = (gcnew System::Windows::Forms::Label());
 			this->escalator = (gcnew System::Windows::Forms::Label());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->weightFigure = (gcnew System::Windows::Forms::Label());
+			this->weightSum = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->SuspendLayout();
@@ -449,12 +442,34 @@ namespace Projekt2 {
 			this->pictureBox1->TabIndex = 61;
 			this->pictureBox1->TabStop = false;
 			// 
+			// weightFigure
+			// 
+			this->weightFigure->AutoSize = true;
+			this->weightFigure->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->weightFigure->Location = System::Drawing::Point(533, 32);
+			this->weightFigure->Name = L"weightFigure";
+			this->weightFigure->Size = System::Drawing::Size(44, 13);
+			this->weightFigure->TabIndex = 65;
+			this->weightFigure->Text = L"Weight:";
+			// 
+			// weightSum
+			// 
+			this->weightSum->AutoSize = true;
+			this->weightSum->BackColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->weightSum->Location = System::Drawing::Point(584, 32);
+			this->weightSum->Name = L"weightSum";
+			this->weightSum->Size = System::Drawing::Size(13, 13);
+			this->weightSum->TabIndex = 66;
+			this->weightSum->Text = L"0";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->ClientSize = System::Drawing::Size(849, 570);
+			this->Controls->Add(this->weightSum);
+			this->Controls->Add(this->weightFigure);
 			this->Controls->Add(this->escalator);
 			this->Controls->Add(this->winda);
 			this->Controls->Add(this->level5);
@@ -495,280 +510,445 @@ namespace Projekt2 {
 
 		}
 
+		void signals(int v, std::vector<int> &, std::vector< std::vector<int> > &)
+		{
+			if (floor[v][0] == FIRST_FLOOR)
+				floor[6].push_back(1);
+			else if (floor[v][0] == SECOND_FLOOR)
+				floor[6].push_back(2);
+			else if (floor[v][0] == THIRD_FLOOR)
+				floor[6].push_back(3);
+			else if (floor[v][0] == FOURTH_FLOOR)
+				floor[6].push_back(4);
+			else if (floor[v][0] == FIFTH_FLOOR)
+				floor[6].push_back(5);
+		}
 
+		void signalConfiguration(std::vector<int> &, std::vector< std::vector<int> > &)
+		{
+			this->timer1->Stop();
+				if (this->pictureBox2->Top == FIRST_FLOOR)
+				{
+					for (int o = 0; o <=floor[6].size(); o++)
+					{
+						if (floor[6][o] == 1)
+						{
+							floor[6].erase(floor[6].begin() + o);
+							o = 0;
+						}
+						if ((floor[6].size() == 1) && (floor[6][0] == 1))
+						{
+							floor[6].clear();
+							this->timer1->Start();
+							return;
+						}
+					}
+				}
+				else if (this->pictureBox2->Top == SECOND_FLOOR)
+				{
+					for (int o = 0; o <floor[6].size(); o++)
+					{
+						if (floor[6][o] == 2)
+						{
+							floor[6].erase(floor[6].begin() + o);
+							o = 0;
+						}
+						if ((floor[6].size() == 1) && (floor[6][0] == 2))
+						{
+							floor[6].clear();
+							this->timer1->Start();
+							return;
+						}
+					}
+				}
+				else if (this->pictureBox2->Top == THIRD_FLOOR)
+				{
+					for (int o = 0; o < floor[6].size(); o++)
+					{
+						if (floor[6][o] == 3)
+						{
+							floor[6].erase(floor[6].begin() + o);
+							o = 0;
+						}
+						 if ((floor[6].size() == 1) && (floor[6][0] == 3))
+						 {
+							 floor[6].clear();
+							 this->timer1->Start();
+							 return;
+						 }
+					}
+				}
+				else if (this->pictureBox2->Top == FOURTH_FLOOR)
+				{
+					for (int o = 0; o < floor[6].size(); o++)
+					{
+						if (floor[6][o] == 4)
+						{
+							floor[6].erase(floor[6].begin() + o);
+							o = 0;
+						}
+						 if ((floor[6].size() == 1) && (floor[6][0] == 4))
+						 {
+							 floor[6].clear();
+							 this->timer1->Start();
+							 return;
+						 }
+					}
+				}
+				else if (this->pictureBox2->Top == FIFTH_FLOOR)
+				{
+					for (int o = 0; o < floor[6].size(); o++)
+					{
+						if (floor[6][o] == 5)
+						{
+							floor[6].erase(floor[6].begin() + o);
+							o = 0;
+						}
+						 if ((floor[6].size() == 1) && (floor[6][0] == 5))
+						 {
+							 floor[6].clear();
+							 this->timer1->Start();
+							 return;
+						 }
+					}
+				}
+			this->timer1->Start();
+		}
+
+		void weightElevator()
+		{
+			weightString = Convert::ToString(floor[6].size() * 70);
+			weightSum->Text = weightString;
+		}
+
+		void peopleLevel1()
+		{
+			queue1 = " ";
+			for (int o = 0; o < floor[1].size(); o++)
+			{
+				if (floor[1][o] == FIRST_FLOOR) person = Convert::ToString(1);
+				else if (floor[1][o] == SECOND_FLOOR) person = Convert::ToString(2);
+				else if (floor[1][o] == THIRD_FLOOR) person = Convert::ToString(3);
+				else if (floor[1][o] == FOURTH_FLOOR) person = Convert::ToString(4);
+				else if (floor[1][o] == FIFTH_FLOOR) person = Convert::ToString(5);
+				queue1 = queue1 + " " + person;
+				level1->Text = queue1;
+			}
+			if (floor[1].empty()) level1->Text = " ";
+		}
+		void peopleLevel2()
+		{
+			queue2 = " ";
+			for (int o = 0; o < floor[2].size(); o++)
+			{
+				if (floor[2][o] == FIRST_FLOOR) person = Convert::ToString(1);
+				else if (floor[2][o] == SECOND_FLOOR) person = Convert::ToString(2);
+				else if (floor[2][o] == THIRD_FLOOR) person = Convert::ToString(3);
+				else if (floor[2][o] == FOURTH_FLOOR) person = Convert::ToString(4);
+				else if (floor[2][o] == FIFTH_FLOOR) person = Convert::ToString(5);
+				queue2 = queue2 + " " + person;
+				level2->Text = queue2;
+			}
+			if (floor[2].empty()) level2->Text = " ";
+		}
+		void peopleLevel3()
+		{
+			queue3 = " ";
+			for (int o = 0; o < floor[3].size(); o++)
+			{
+				if (floor[3][o] == FIRST_FLOOR) person = Convert::ToString(1);
+				else if (floor[3][o] == SECOND_FLOOR) person = Convert::ToString(2);
+				else if (floor[3][o] == THIRD_FLOOR) person = Convert::ToString(3);
+				else if (floor[3][o] == FOURTH_FLOOR) person = Convert::ToString(4);
+				else if (floor[3][o] == FIFTH_FLOOR) person = Convert::ToString(5);
+				queue3 = queue3 + " " + person;
+				level3->Text = queue3;
+			}
+			if (floor[3].empty()) level3->Text = " ";
+		}
+		void peopleLevel4()
+		{
+			queue4 = " ";
+			for (int o = 0; o < floor[4].size(); o++)
+			{
+				if (floor[4][o] == FIRST_FLOOR) person = Convert::ToString(1);
+				else if (floor[4][o] == SECOND_FLOOR) person = Convert::ToString(2);
+				else if (floor[4][o] == THIRD_FLOOR) person = Convert::ToString(3);
+				else if (floor[4][o] == FOURTH_FLOOR) person = Convert::ToString(4);
+				else if (floor[4][o] == FIFTH_FLOOR) person = Convert::ToString(5);
+				queue4 = queue4 + " " + person;
+				level4->Text = queue4;
+			}
+			if (floor[4].empty()) level4->Text = " ";
+		}
+		void peopleLevel5()
+		{
+			queue5 = " ";
+			for (int o = 0; o < floor[5].size(); o++)
+			{
+				if (floor[5][o] == FIRST_FLOOR) person = Convert::ToString(1);
+				else if (floor[5][o] == SECOND_FLOOR) person = Convert::ToString(2);
+				else if (floor[5][o] == THIRD_FLOOR) person = Convert::ToString(3);
+				else if (floor[5][o] == FOURTH_FLOOR) person = Convert::ToString(4);
+				else if (floor[5][o] == FIFTH_FLOOR) person = Convert::ToString(5);
+				queue5 = queue5 + " " + person;
+				level5->Text = queue5;
+			}
+			if (floor[5].empty()) level5->Text = " ";
+		}
+
+		void peopleElevator()
+		{
+			passengersElevator = " ";
+			for (int o = 0; o < floor[6].size(); o++)
+			{
+				passengerElevator = Convert::ToString(floor[6][o]);
+				passengersElevator = passengersElevator + " " + passengerElevator;
+				escalator->Text = passengersElevator;
+			}
+			if (floor[6].empty()) escalator->Text = " ";
+		}
 
 		//Elevator controll
-
-void Elevator(int x)
-{
-	if (i != 75)
-	{
-		i++;
-		return;
-	}
-	if (this->pictureBox2->Top < x)
-		this->pictureBox2->Top += 1;
-	else if (this->pictureBox2->Top > x)
-		this->pictureBox2->Top -= 1;
-	else
-	{
-		i = 0;
-		floor[0].erase(floor[0].begin());
-		elevator_stop = true;
-	}
-	if (floor[0].empty())
-		this->timer1->Stop();
-}
-
-
-void Passengers(std::vector<int>& )
-{
-	for (int i = 0; i < floor[0].size(); i++)
-	{
-		int x = floor[0][i];
-		for (int j = i + 1; j < floor[0].size(); j++)
+		void Elevator(int x, std::vector<int> &, std::vector< std::vector<int> > &)
 		{
-			if (floor[0][j] == x)
+			if (i != 75)
 			{
-				floor[0].erase(floor[0].begin() + j);
+				i++;
+				return;
+			}
+			if (this->pictureBox2->Top < x)
+				this->pictureBox2->Top += 1;
+			else if (this->pictureBox2->Top > x)
+				this->pictureBox2->Top -= 1;
+			else
+			{
+				this->timer1->Stop();
+				i = 0;
+				if (!floor[0].empty())
+					floor[0].erase(floor[0].begin());
+				if(!floor[6].empty())
+				signalConfiguration(floorPassengers, floor);
+				if (this->pictureBox2->Top == FIRST_FLOOR)
+				{
+					if (!floor[1].empty())
+					{
+						v = 1;
+						while (!floor[1].empty())
+						{
+							floor[0].push_back(floor[1][0]);
+							signals(v, floorPassengers, floor);
+							floor[1].erase(floor[1].begin());
+						}
+					}
+					peopleElevator();
+					weightElevator();
+				}
+				else if (this->pictureBox2->Top == SECOND_FLOOR)
+				{
+					if (!floor[2].empty())
+					{
+						v = 2;
+						while (!floor[2].empty())
+						{
+							floor[0].push_back(floor[2][0]);
+							signals(v, floorPassengers, floor);
+							floor[2].erase(floor[2].begin());
+						}
+					}
+					peopleElevator();
+					weightElevator();
+				}
+				else if (this->pictureBox2->Top == THIRD_FLOOR)
+				{
+					if (!floor[3].empty())
+					{
+						v = 3;
+						while (!floor[3].empty())
+						{
+							floor[0].push_back(floor[3][0]);
+							signals(v, floorPassengers, floor);
+							floor[3].erase(floor[3].begin());
+						}
+					}
+					peopleElevator();
+					weightElevator();
+				}
+				else if (this->pictureBox2->Top == FOURTH_FLOOR)
+				{
+					if (!floor[4].empty())
+					{
+						v = 4;
+						while (!floor[4].empty())
+						{
+							floor[0].push_back(floor[4][0]);
+							signals(v, floorPassengers, floor);
+							floor[4].erase(floor[4].begin());
+						}
+					}
+					peopleElevator();
+					weightElevator();
+				}
+				else if (this->pictureBox2->Top == FIFTH_FLOOR)
+				{
+					if (!floor[5].empty())
+					{
+						v = 5;
+						while (!floor[5].empty())
+						{
+							floor[0].push_back(floor[5][0]);
+							signals(v, floorPassengers, floor);
+							floor[5].erase(floor[5].begin());
+						}
+					}
+					peopleElevator();
+					weightElevator();
+				}
+			}
+			this->timer1->Start();
+		}
+
+
+		void Passengers(std::vector<int>&)
+		{
+			for (int i = 0; i < floor[0].size(); i++)
+			{
+				int x = floor[0][i];
+				for (int j = i + 1; j < floor[0].size(); j++)
+				{
+					if (floor[0][j] == x)
+					{
+						floor[0].erase(floor[0].begin() + j);
+					}
+				}
 			}
 		}
-	}
 
-}
-/*void Sort(std::vector<int>&)
-{
-
-
-
-	
-	int x, y, z;
-	 x = floor[0];
-	 y = floor[1];
-	if (x < y)
-	{
-		for (int i; i < floor.size(); i++)
+		void vectorInizialization(std::vector<int> &, std::vector< std::vector<int> > &)
 		{
-			if (floor[i] == 5)
-				 z = i;
+			for (int q = 0; q < 7; q++) {
+				floor.push_back(floorPassengers);
+			}
 		}
-		sort(floor.begin(), floor.end());
-	}
-
-}*/
-
-void vectorInizialization(std::vector<int> &, std::vector< std::vector<int> > &)
-{
-	for (int q = 0; q<6; q++)
-		floor.push_back(floorPassengers);
-
-}
 
 
-	#pragma endregion
+		void control(int e,int r, int p, std::vector<int> &, std::vector< std::vector<int> > &)
+		{
+			this->timer1->Stop();
+			floor[0].push_back(e);
+			floor[p].push_back(r);
+			this->timer1->Start();
+			Passengers(floor[0]);
+		}
+
+#pragma endregion
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
-		vectorInizialization(floorPassengers,floor);
+		vectorInizialization(floorPassengers, floor);
 	}
 	private: System::Void pictureBox1_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void pictureBox2_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) {
-		Elevator(floor[0][0]);
-
-	}
-	/*private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIRST_FLOOR);
-			this->timer1->Start();
-			queue1 = queue1 + "," + lvl1;
-			level1->Text = queue1;
-	}
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(SECOND_FLOOR);
-		this->timer1->Start();
-
-		queue1 = queue1 + "," + lvl2;
-		level1->Text = queue1;
-	}
-	private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(THIRD_FLOOR);
-		this->timer1->Start();
-		queue1 = queue1 + "," + lvl3;
-		level1->Text = queue1;
-	}
-	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FOURTH_FLOOR);
-		this->timer1->Start();
-		queue1 = queue1 + "," + lvl4;
-		level1->Text = queue1;
-	}
-	private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor.push_back(FIFTH_FLOOR);
-		this->timer1->Start();
-		queue1 = queue1 + "," + lvl5;
-		level1->Text = queue1;
-	}*/
-
-	//Buttons
-	private: System::Void button1_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIRST_FLOOR);
-		floor[1].push_back(SECOND_FLOOR);
+		if (!floor[0].empty()) {
+			Elevator(floor[0][0], floorPassengers, floor);
+		}
+		else
+		{
+			s++;
+			if (s == 240)
+			{
+				floor[0].push_back(FIRST_FLOOR);
+				s = 0;
+			}
+		}
+		peopleLevel1();
+		peopleLevel2();
+		peopleLevel3();
+		peopleLevel4();
+		peopleLevel5();
 		Passengers(floor[0]);
-		this->timer1->Start();
-		queue1 = lvl2 + " " + queue1;
-		level1->Text = queue1;
+	}
+			 //Buttons
+	private: System::Void button1_2_Click(System::Object^  sender, System::EventArgs^  e) {
+		p = 1;
+		control(FIRST_FLOOR, SECOND_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button1_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIRST_FLOOR);
-		floor[1].push_back(THIRD_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue1 = lvl3 + " " + queue1;
-		level1->Text = queue1;
+		p = 1;
+		control(FIRST_FLOOR, THIRD_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button1_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIRST_FLOOR);
-		floor[1].push_back(FOURTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue1 = lvl4 + " " + queue1;
-		level1->Text = queue1;
+		p = 1;
+		control(FIRST_FLOOR, FOURTH_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button1_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIRST_FLOOR);
-		floor[1].push_back(FIFTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue1 = lvl5 + " " + queue1;
-		level1->Text = queue1;
+		p = 1;
+		control(FIRST_FLOOR, FIFTH_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button2_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(SECOND_FLOOR);
-		floor[2].push_back(FIRST_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue2 = queue2 + " " + lvl1;
-		level2->Text = queue2;
+		p = 2;
+		control(SECOND_FLOOR, FIRST_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button2_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(SECOND_FLOOR);
-		floor[2].push_back(THIRD_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue2 = queue2 + " " + lvl3;
-		level2->Text = queue2;
+		p = 2;
+		control(SECOND_FLOOR, THIRD_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button2_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(SECOND_FLOOR);
-		floor[2].push_back(FOURTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue2 = queue2 + " " + lvl4;
-		level2->Text = queue2;
+		p = 2;
+		control(SECOND_FLOOR, FOURTH_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button2_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(SECOND_FLOOR);
-		floor[2].push_back(FIFTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue2 = queue2 + " " + lvl5;
-		level2->Text = queue2;
+		p = 2;
+		control(SECOND_FLOOR, FIFTH_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button3_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(THIRD_FLOOR);
-		floor[3].push_back(FIRST_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue3 = lvl1 + " " + queue3;
-		level3->Text = queue3;
+		p = 3;
+		control(THIRD_FLOOR, FIRST_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button3_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(THIRD_FLOOR);
-		floor[3].push_back(SECOND_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue3 = lvl2 + " " + queue3;
-		level3->Text = queue3;
+		p = 3;
+		control(THIRD_FLOOR, SECOND_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button3_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(THIRD_FLOOR);
-		floor[3].push_back(FOURTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue3 = lvl4 + " " + queue3;
-		level3->Text = queue3;
+		p = 3;
+		control(THIRD_FLOOR, FOURTH_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button3_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(THIRD_FLOOR);
-		floor[3].push_back(FIFTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue3 = lvl5 + " " + queue3;
-		level3->Text = queue3;
+		p = 3;
+		control(THIRD_FLOOR, FIFTH_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button4_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FOURTH_FLOOR);
-		floor[4].push_back(FIRST_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue4 = queue4 + " " + lvl1;
-		level4->Text = queue4;
+		p = 4;
+		control(FOURTH_FLOOR, FIRST_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button4_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FOURTH_FLOOR);
-		floor[4].push_back(SECOND_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue4 = queue4 + " " + lvl2;
-		level4->Text = queue4;
+		p = 4;
+		control(FOURTH_FLOOR, SECOND_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button4_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FOURTH_FLOOR);
-		floor[4].push_back(THIRD_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue4 = queue4 + " " + lvl3;
-		level4->Text = queue4;
+		p = 4;
+		control(FOURTH_FLOOR, THIRD_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button4_5_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FOURTH_FLOOR);
-		floor[4].push_back(FIFTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue4 = queue4 + " " + lvl5;
-		level4->Text = queue4;
+		p = 4;
+		control(FOURTH_FLOOR, FIFTH_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button5_1_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIFTH_FLOOR);
-		floor[5].push_back(FIRST_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue5 = lvl1 + " " + queue5;
-		level5->Text = queue5;
+		p = 5;
+		control(FIFTH_FLOOR, FIRST_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button5_2_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIFTH_FLOOR);
-		floor[5].push_back(SECOND_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue5 = lvl2 + " " + queue5;
-		level5->Text = queue5;
+		p = 5;
+		control(FIFTH_FLOOR, SECOND_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button5_3_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIFTH_FLOOR);
-		floor[5].push_back(THIRD_FLOOR);
-		Passengers(floorPassengers);
-		this->timer1->Start();
-		queue5 = lvl3 + " " + queue5;
-		level5->Text = queue5;
+		p = 5;
+		control(FIFTH_FLOOR, THIRD_FLOOR, p, floorPassengers, floor);
 	}
 	private: System::Void button5_4_Click(System::Object^  sender, System::EventArgs^  e) {
-		floor[0].push_back(FIFTH_FLOOR);
-		floor[5].push_back(FOURTH_FLOOR);
-		Passengers(floor[0]);
-		this->timer1->Start();
-		queue5 = lvl4 + " " + queue5;
-		level5->Text = queue5;
+		p = 5;
+		control(FIFTH_FLOOR, FOURTH_FLOOR, p, floorPassengers, floor);
 	}
 	};
 

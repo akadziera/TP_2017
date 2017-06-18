@@ -80,7 +80,7 @@ namespace WindowsFormsApp1
             {
                     
                     e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
-                timer2_Tick(sender, e);
+               
                 
 
             }
@@ -318,10 +318,6 @@ namespace WindowsFormsApp1
             
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            
-        }
 
         private void button13_Click(object sender, EventArgs e)
         {

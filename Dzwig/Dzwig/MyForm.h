@@ -63,23 +63,20 @@ namespace Dzwig {
 	private: System::Windows::Forms::Button^  up;
 	private: System::Windows::Forms::Button^  down;
 	private: System::Windows::Forms::PictureBox^  obraz3;
-	private: System::Windows::Forms::PictureBox^  box;
+
+
 	private: System::Windows::Forms::CheckBox^  checkBox1;
 	private: System::Windows::Forms::PictureBox^  chain;
 
 
-
-
-
+	private: System::Windows::Forms::Label^  box;
+	private: System::Windows::Forms::PictureBox^  Marek;
+	private: System::Windows::Forms::PictureBox^  pictureBox1;
+	private: System::Windows::Forms::PictureBox^  Maciek;
+	private: System::Windows::Forms::Label^  CreditsBox;
 
 
 	protected:
-
-
-
-
-
-
 
 
 	private:
@@ -120,16 +117,22 @@ namespace Dzwig {
 			this->up = (gcnew System::Windows::Forms::Button());
 			this->down = (gcnew System::Windows::Forms::Button());
 			this->obraz3 = (gcnew System::Windows::Forms::PictureBox());
-			this->box = (gcnew System::Windows::Forms::PictureBox());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->chain = (gcnew System::Windows::Forms::PictureBox());
+			this->box = (gcnew System::Windows::Forms::Label());
+			this->Marek = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->Maciek = (gcnew System::Windows::Forms::PictureBox());
+			this->CreditsBox = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dzwig))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->hak))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->box))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chain))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Marek))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Maciek))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// tytul
@@ -225,18 +228,18 @@ namespace Dzwig {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(678, 90);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(134, 24);
+			this->label1->Size = System::Drawing::Size(168, 29);
 			this->label1->TabIndex = 8;
 			this->label1->Text = L"Kolor DŸwigu";
 			this->label1->Visible = false;
 			// 
 			// button1
 			// 
-			this->button1->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(645, 132);
 			this->button1->Name = L"button1";
@@ -249,7 +252,7 @@ namespace Dzwig {
 			// 
 			// button2
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button2->Location = System::Drawing::Point(756, 132);
 			this->button2->Name = L"button2";
@@ -262,7 +265,7 @@ namespace Dzwig {
 			// 
 			// button3
 			// 
-			this->button3->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button3->Location = System::Drawing::Point(645, 171);
 			this->button3->Name = L"button3";
@@ -275,7 +278,7 @@ namespace Dzwig {
 			// 
 			// button4
 			// 
-			this->button4->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button4->Location = System::Drawing::Point(756, 171);
 			this->button4->Name = L"button4";
@@ -289,18 +292,18 @@ namespace Dzwig {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(687, 232);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(116, 24);
+			this->label2->Size = System::Drawing::Size(142, 29);
 			this->label2->TabIndex = 13;
 			this->label2->Text = L"Kolor Haka";
 			this->label2->Visible = false;
 			// 
 			// button5
 			// 
-			this->button5->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button5->Location = System::Drawing::Point(756, 309);
 			this->button5->Name = L"button5";
@@ -313,7 +316,7 @@ namespace Dzwig {
 			// 
 			// button6
 			// 
-			this->button6->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button6->Location = System::Drawing::Point(645, 309);
 			this->button6->Name = L"button6";
@@ -326,7 +329,7 @@ namespace Dzwig {
 			// 
 			// button7
 			// 
-			this->button7->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button7->Location = System::Drawing::Point(756, 270);
 			this->button7->Name = L"button7";
@@ -339,7 +342,7 @@ namespace Dzwig {
 			// 
 			// button8
 			// 
-			this->button8->Font = (gcnew System::Drawing::Font(L"OpenSymbol", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->button8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button8->Location = System::Drawing::Point(645, 270);
 			this->button8->Name = L"button8";
@@ -417,15 +420,6 @@ namespace Dzwig {
 			this->obraz3->TabIndex = 23;
 			this->obraz3->TabStop = false;
 			// 
-			// box
-			// 
-			this->box->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"box.Image")));
-			this->box->Location = System::Drawing::Point(291, 412);
-			this->box->Name = L"box";
-			this->box->Size = System::Drawing::Size(60, 60);
-			this->box->TabIndex = 24;
-			this->box->TabStop = false;
-			// 
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
@@ -450,13 +444,70 @@ namespace Dzwig {
 			this->chain->TabStop = false;
 			this->chain->Visible = false;
 			// 
+			// box
+			// 
+			this->box->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->box->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"box.Image")));
+			this->box->Location = System::Drawing::Point(291, 412);
+			this->box->Name = L"box";
+			this->box->Size = System::Drawing::Size(60, 60);
+			this->box->TabIndex = 28;
+			this->box->Text = L"420 lbs";
+			this->box->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// Marek
+			// 
+			this->Marek->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Marek.Image")));
+			this->Marek->Location = System::Drawing::Point(164, 209);
+			this->Marek->Name = L"Marek";
+			this->Marek->Size = System::Drawing::Size(130, 200);
+			this->Marek->TabIndex = 29;
+			this->Marek->TabStop = false;
+			this->Marek->Visible = false;
+			// 
+			// pictureBox1
+			// 
+			this->pictureBox1->Location = System::Drawing::Point(0, 0);
+			this->pictureBox1->Name = L"pictureBox1";
+			this->pictureBox1->Size = System::Drawing::Size(100, 50);
+			this->pictureBox1->TabIndex = 32;
+			this->pictureBox1->TabStop = false;
+			// 
+			// Maciek
+			// 
+			this->Maciek->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Maciek.Image")));
+			this->Maciek->Location = System::Drawing::Point(848, 209);
+			this->Maciek->Name = L"Maciek";
+			this->Maciek->Size = System::Drawing::Size(130, 200);
+			this->Maciek->TabIndex = 30;
+			this->Maciek->TabStop = false;
+			this->Maciek->Visible = false;
+			// 
+			// CreditsBox
+			// 
+			this->CreditsBox->AutoSize = true;
+			this->CreditsBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(238)));
+			this->CreditsBox->Location = System::Drawing::Point(392, 209);
+			this->CreditsBox->Name = L"CreditsBox";
+			this->CreditsBox->Size = System::Drawing::Size(367, 125);
+			this->CreditsBox->TabIndex = 31;
+			this->CreditsBox->Text = L"Kierownicy budowy:\r\nMarek Mikulski oraz Maciej Kura¿\r\n\r\nProgram stworzony przy po"
+				L"mocy \r\nVisual C++ Windows Forms\r\n";
+			this->CreditsBox->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1311, 470);
-			this->Controls->Add(this->checkBox1);
+			this->Controls->Add(this->CreditsBox);
+			this->Controls->Add(this->Maciek);
+			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->Marek);
 			this->Controls->Add(this->box);
+			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->obraz3);
 			this->Controls->Add(this->down);
 			this->Controls->Add(this->up);
@@ -490,8 +541,10 @@ namespace Dzwig {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dzwig))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->hak))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->obraz3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->box))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chain))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Marek))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Maciek))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -499,7 +552,38 @@ namespace Dzwig {
 #pragma endregion
 	private: System::Void credits_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		MessageBox::Show("Kierownicy budowy: Marek Mikulski i Maciej Kura¿			Program stworzony za pomoc¹ Visual C++ Windows Forms", "Credits", MessageBoxButtons::OK);
+		obraz1->Visible = true;
+		obraz2->Visible = false;
+		obraz3->Visible = true;
+		tytul->Visible = true;
+		graj->Visible = false;
+		credits->Visible = false;
+		DostosujDzwig->Visible = false;
+
+		CreditsBox->Visible = true;
+		Maciek->Visible = true;
+		Marek->Visible = true;
+		dzwig->Visible = false;
+		menu->Visible = true;
+		button1->Visible = false;
+		button2->Visible = false;
+		button3->Visible = false;
+		button4->Visible = false;
+		button5->Visible = false;
+		button6->Visible = false;
+		button7->Visible = false;
+		button8->Visible = false;
+		label1->Visible = false;
+		label2->Visible = false;
+		hak->Visible = false;
+		up->Visible = false;
+		down->Visible = false;
+		left->Visible = false;
+		right->Visible = false;
+		box->Visible = false;
+		checkBox1->Visible = false;
+		chain->Visible = false;
+
 
 	}
 private: System::Void DostosujDzwig_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -518,6 +602,9 @@ private: System::Void DostosujDzwig_Click(System::Object^  sender, System::Event
 	checkBox1->Visible = false;
 	chain->Visible = false;
 
+	CreditsBox->Visible = false;
+	Maciek->Visible = false;
+	Marek->Visible = false;
 	dzwig->Visible = true;
 	menu->Visible = true;
 	button1->Visible = true;
@@ -546,6 +633,9 @@ private: System::Void menu_Click(System::Object^  sender, System::EventArgs^  e)
 	credits->Visible = true;
 	DostosujDzwig->Visible = true;
 
+	CreditsBox->Visible = false;
+	Maciek->Visible = false;
+	Marek->Visible = false;
 	dzwig->Visible = false;
 	menu->Visible = false;
 	button1->Visible = false;
@@ -612,6 +702,9 @@ private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e)
 	chain->Size = System::Drawing::Size(12, hak->Location.Y - 88);
 	box->Location = System::Drawing::Point(291, 412);
 
+	CreditsBox->Visible = false;
+	Maciek->Visible = false;
+	Marek->Visible = false;
 	obraz1->Visible = false;
 	obraz2->Visible = false;
 	obraz3->Visible = false;
@@ -630,6 +723,7 @@ private: System::Void right_Click(System::Object^  sender, System::EventArgs^  e
 	}
 	if (checkBox1->Checked == false)
 	{
+		
 		if (box->Location.Y >= hak->Location.Y  && box->Location.Y <= hak->Location.Y + 83 && (hak->Location.X >= box->Location.X && hak->Location.X <= box->Location.X + 50))
 		{
 
@@ -741,6 +835,10 @@ private: System::Void left_Click(System::Object^  sender, System::EventArgs^  e)
 	}
 }
 private: System::Void zwolnij_Click(System::Object^  sender, System::EventArgs^  e) {
+}
+
+
+private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 }
 };
 }

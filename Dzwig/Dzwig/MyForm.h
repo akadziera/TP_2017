@@ -353,7 +353,7 @@ namespace Dzwig {
 			// hak
 			// 
 			this->hak->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"hak.Image")));
-			this->hak->Location = System::Drawing::Point(411, 88);
+			this->hak->Location = System::Drawing::Point(420, 88);
 			this->hak->Name = L"hak";
 			this->hak->Size = System::Drawing::Size(31, 65);
 			this->hak->TabIndex = 18;
@@ -499,7 +499,7 @@ namespace Dzwig {
 #pragma endregion
 	private: System::Void credits_Click(System::Object^  sender, System::EventArgs^  e) {
 
-		MessageBox::Show("Kierownicy budowy: Marek Mikulski i Maciej Kura¿", "Credits", MessageBoxButtons::OK);
+		MessageBox::Show("Kierownicy budowy: Marek Mikulski i Maciej Kura¿			Program stworzony za pomoc¹ Visual C++ Windows Forms", "Credits", MessageBoxButtons::OK);
 
 	}
 private: System::Void DostosujDzwig_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -531,7 +531,7 @@ private: System::Void DostosujDzwig_Click(System::Object^  sender, System::Event
 	label1->Visible = true;
 	label2->Visible = true;
 	hak->Visible = true;
-	this->hak->Location = System::Drawing::Point(395, 88);
+	hak->Location = System::Drawing::Point(395, 88);
 
 
 
@@ -608,6 +608,8 @@ private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e)
 	right->Visible = true;
 	box->Visible = true;
 	checkBox1->Visible = true;
+	chain->Location = System::Drawing::Point(hak->Location.X + 10, 88);
+	chain->Size = System::Drawing::Size(12, hak->Location.Y - 88);
 
 	obraz1->Visible = false;
 	obraz2->Visible = false;

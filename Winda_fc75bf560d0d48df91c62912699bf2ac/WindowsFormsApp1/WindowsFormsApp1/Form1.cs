@@ -18,7 +18,9 @@ namespace WindowsFormsApp1
         private int i;
         private int j;
         private int x;
+        private int xx;
         private int y;
+       
         private int z;
         private int m;
         private int count;
@@ -50,6 +52,8 @@ namespace WindowsFormsApp1
             y = 300;
             i = 0;
             j = 0;
+            xx = 0;
+            
             weight = 0;
             pietropierwsze = 300;
             ground = 0;
@@ -69,21 +73,22 @@ namespace WindowsFormsApp1
             count = passenger2.Count();
             for (int c = 0; c < count; c++)
             {
-                e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 30, 10, 10);
+                e.Graphics.DrawRectangle(myPen, 200 - (15 * c), 120, 10, 10);
             }
             ccount = lift.Count();
             for (int j = 0; j < ccount; j++)
             {
-                
+                    
                     e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
+                timer2_Tick(sender, e);
                 
-             
-                }
+
+            }
 
             c1ount = passenger1.Count();
             for (int c = 0; c < c1ount; c++)
             {
-                e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 165, 10, 10);
+                e.Graphics.DrawRectangle(myPen, 200 - (15 * c), 250, 10, 10);
             }
 
             for (int j = 0; j < ccount; j++)
@@ -91,20 +96,20 @@ namespace WindowsFormsApp1
                 
                     e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
                 
-                }
+            }
             cgount = passengerground.Count();
             for (int c = 0; c < cgount; c++)
             {
-                e.Graphics.DrawRectangle(myPen, 140 - (15 * c), 300, 10, 10);
+                e.Graphics.DrawRectangle(myPen, 200 - (15 * c), 380, 10, 10);
             }
 
             for (int j = 0; j < ccount; j++)
             {
               
                 
-                    e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
-                
-                }
+                e.Graphics.DrawRectangle(myPen, (10 + j * 10) + x, (80) + y, 10, 10);
+               
+            }
 
            
         }
@@ -176,6 +181,7 @@ namespace WindowsFormsApp1
                 textBox1.Text = text;
 
             }
+
             if (lift.Count() == 0)
             {
                 System.Threading.Thread.Sleep(5000);
@@ -283,12 +289,14 @@ namespace WindowsFormsApp1
             {
                 passenger2.Enqueue(j);
                 lift.Dequeue();
-                j = passenger2.Count();
+               
                 weight = normalweight * lift.Count();
                 string text = weight.ToString();
                 textBox1.Text = text;
 
+               
             }
+
             if (lift.Count() == 0)
             {
                 System.Threading.Thread.Sleep(5000);
@@ -308,6 +316,35 @@ namespace WindowsFormsApp1
         {
              
             
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            if (passenger2.Count() !=0)
+            {
+                passenger2.Dequeue();
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            if (passenger1.Count() != 0)
+            {
+                passenger1.Dequeue();
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            if (passengerground.Count() != 0)
+            {
+                passengerground.Dequeue();
+            }
         }
     }
 }

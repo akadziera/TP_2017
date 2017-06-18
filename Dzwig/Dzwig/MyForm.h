@@ -453,8 +453,8 @@ namespace Dzwig {
 			this->box->Name = L"box";
 			this->box->Size = System::Drawing::Size(60, 60);
 			this->box->TabIndex = 28;
-			this->box->Text = L"420 lbs";
 			this->box->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->box->Visible = false;
 			// 
 			// Marek
 			// 

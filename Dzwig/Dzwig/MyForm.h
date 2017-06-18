@@ -610,6 +610,7 @@ private: System::Void graj_Click(System::Object^  sender, System::EventArgs^  e)
 	checkBox1->Visible = true;
 	chain->Location = System::Drawing::Point(hak->Location.X + 10, 88);
 	chain->Size = System::Drawing::Size(12, hak->Location.Y - 88);
+	box->Location = System::Drawing::Point(291, 412);
 
 	obraz1->Visible = false;
 	obraz2->Visible = false;

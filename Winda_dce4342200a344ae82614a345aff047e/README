@@ -1,0 +1,7 @@
+Projekt został stworzony przez Kacpra Kunz i Bazylego Gielniaka - studentów grupy 1 Automatyki i Robotyki Politechniki Gdańskiej (2017).
+
+Program symuluje działanie windy. Umożliwia przywołanie windy na poszczególne piętra poprzez przyciski interfejsu. Zatrzymuje się na
+wybranych przez użytkownika piętrach. Gdy winda jest pusta i nikt nie chce do niej wsiąść algorytm po 5 sekundach przywoluje windę na
+dół.
+
+Projekt został napisany w programie Visual Studio 2015 z wykorzystaniem GDI+.

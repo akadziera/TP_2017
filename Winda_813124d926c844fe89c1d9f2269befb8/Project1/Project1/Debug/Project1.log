@@ -1,0 +1,7 @@
+﻿  MyForm.cpp
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(1486): warning C4018: '<': signed/unsigned mismatch
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(1493): warning C4018: '<': signed/unsigned mismatch
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(1505): warning C4018: '<': signed/unsigned mismatch
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(1510): warning C4018: '<': signed/unsigned mismatch
+c:\users\mikołaj\desktop\project1\tp_2017\winda_813124d926c844fe89c1d9f2269befb8\project1\project1\MyForm.h(1768): warning C4018: '<': signed/unsigned mismatch
+  Project1.vcxproj -> C:\Users\Mikołaj\Desktop\Project1\TP_2017\Winda_813124d926c844fe89c1d9f2269befb8\Project1\Debug\Project1.exe
